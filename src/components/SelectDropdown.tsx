@@ -42,7 +42,7 @@ export const SelectDropdown: FC<ISelect> = ({
     <div className="relative w-64 mr-5 cursor-pointer">
       <div
         style={{ borderRadius: "10px 10px 0 0" }}
-        className="relative p-2.5 text-lg border border-black"
+        className="relative p-2.5 text-lg border border-slate-500"
         onClick={handleToggle}
       >
         {name && (

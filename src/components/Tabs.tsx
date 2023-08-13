@@ -1,14 +1,14 @@
 import { ReactNode, useState, FC } from "react";
 
-interface ITab {
+type TTab = {
   id: string;
   title: string;
   content: ReactNode;
   onClick?: () => void;
-}
+};
 
 interface ITabs {
-  tabs: ITab[];
+  tabs: TTab[];
   activeTabId?: string;
   className?: string;
   navClassName?: string;

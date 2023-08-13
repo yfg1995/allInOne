@@ -24,9 +24,13 @@ export const Input: FC<IInput> = ({
     onSave?.(newValue);
   };
 
+  // const onInputSave = () => {
+  //   onSave?.(inputValue);
+  // }
+
   return (
     <div
-      className={`flex items-center gap-4 h-10 [&>*]:border [&>*]:rounded-lg [&>*]:h-full [&>*]:px-4 mb-8 w-full ${className}`}
+      className={`flex items-center gap-4 h-10 [&>*]:border [&>*]:rounded-lg [&>*]:h-full [&>*]:px-4 w-full ${className}`}
     >
       <input
         type="text"

@@ -1,4 +1,4 @@
-import { Info } from "./Info";
+import { Info } from "./Info/Info";
 import { OurServices } from "./OurServices";
 
 function App() {

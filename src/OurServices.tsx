@@ -21,7 +21,7 @@ export const OurServices = () => {
   ];
 
   return (
-    <Section title="Our Services">
+    <Section className="mb-4" title="Our Services">
       <Tabs tabs={tabs} />
     </Section>
   );
