@@ -27,7 +27,7 @@ export const InfoRow: FC<IInfoRow> = ({ rowTitle, className, onChange }) => {
       </Label>
       {error && (
         <div className="text-red-400 text-sm">
-          {rowTitle} needs to be more than 4 characters.
+          {rowTitle} needs to be more than 8 characters.
         </div>
       )}
     </div>

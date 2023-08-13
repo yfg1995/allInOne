@@ -39,10 +39,10 @@ export const SelectDropdown: FC<ISelect> = ({
   const itemHeight = 50;
 
   return (
-    <div className="relative w-64 mr-5 cursor-pointer">
+    <div className="relative mr-5 cursor-pointer">
       <div
         style={{ borderRadius: "10px 10px 0 0" }}
-        className="relative p-2.5 text-lg border border-slate-500"
+        className="relative p-2.5 w-1/4 text-lg border border-slate-300"
         onClick={handleToggle}
       >
         {name && (
@@ -55,7 +55,7 @@ export const SelectDropdown: FC<ISelect> = ({
 
       {toggle && (
         <div
-          className="absolute top-full left-0 border border-black mt-[-1px] w-full z-10 rounded-bl-xl"
+          className="absolute top-full left-0 border border-slate-300 mt-[-1px] w-full z-10 rounded-bl-xl"
           style={{ maxHeight: `${itemHeight * 4}px`, overflowY: "auto" }}
         >
           {options.map((option) => (

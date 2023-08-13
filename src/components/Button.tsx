@@ -12,7 +12,7 @@ export const Button: FC<IButton> = ({
 }) => {
   return (
     <button
-      className={`w-full p-4 my-4 bg-red-400 flex justify-center font-bold cursor-pointer disabled:opacity-50 disabled:pointer-events-none rounded-lg ${className}`}
+      className={`w-full p-3 my-4 bg-slate-300 flex justify-center font-medium text-lg cursor-pointer transition-all disabled:opacity-50 disabled:pointer-events-none border rounded-lg hover:bg-white hover:text-black hover:border ${className}`}
       onClick={onClick}
       {...props}
     >

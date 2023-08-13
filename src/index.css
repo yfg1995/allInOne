@@ -15,5 +15,5 @@ code {
     monospace;
 }
 .item:not(:last-of-type) {
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid rgb(203 213 225 / var(--tw-border-opacity));
 }
