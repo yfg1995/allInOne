@@ -30,7 +30,7 @@ export const Input: FC<IInput> = ({
 
   return (
     <div
-      className={`flex items-center gap-4 h-10 [&>*]:border [&>*]:rounded-lg [&>*]:h-full [&>*]:px-4 w-full ${className}`}
+      className={`${className} flex items-center gap-4 h-10 [&>*]:border [&>*]:rounded-lg [&>*]:h-full [&>*]:px-4 w-full`}
     >
       <input
         type="text"
