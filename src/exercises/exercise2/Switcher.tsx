@@ -32,7 +32,7 @@ export const Switcher: FC<TSwitcher> = ({
           isActive ? "h-72" : "h-0"
         )}
       >
-        <div className="h-72 w-full">{children}</div>
+        <div className="-mt-[4px] w-full">{children}</div>
       </div>
     </div>
   );
