@@ -1,6 +1,6 @@
 import { useState, FC } from "react";
-import { Label } from "../components/Label";
-import { Input } from "../components/Input";
+import { Label } from "../../../components/Label";
+import { Input } from "../../../components/Input";
 
 interface IInfoRow {
   rowTitle: string;

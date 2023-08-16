@@ -1,5 +1,5 @@
-import { Tabs } from "./components/Tabs";
-import { Section } from "./components/Section";
+import { Tabs } from "../../components/Tabs";
+import { Section } from "../../components/Section";
 
 export const OurServices = () => {
   const tabs = [

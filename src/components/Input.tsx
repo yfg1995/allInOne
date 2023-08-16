@@ -1,4 +1,5 @@
 import { useState, FC, ChangeEvent } from "react";
+import { classNames } from "../helpers/helpers";
 
 interface IInput {
   placeholder?: string;
@@ -30,7 +31,10 @@ export const Input: FC<IInput> = ({
 
   return (
     <div
-      className={`${className} flex items-center gap-4 h-10 [&>*]:border [&>*]:rounded-lg [&>*]:h-full [&>*]:px-4 w-full`}
+      className={classNames(
+        "flex items-center gap-4 h-10 [&>*]:border [&>*]:rounded-lg [&>*]:h-full [&>*]:px-4 w-full",
+        className
+      )}
     >
       <input
         type="text"

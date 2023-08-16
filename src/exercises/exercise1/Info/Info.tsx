@@ -1,7 +1,7 @@
 import { useState, FC } from "react";
-import { Section } from "../components/Section";
-import { SelectDropdown } from "../components/SelectDropdown";
-import { Button } from "../components/Button";
+import { Section } from "../../../components/Section";
+import { SelectDropdown } from "../../../components/SelectDropdown";
+import { Button } from "../../../components/Button";
 import { infoTabsItems } from "../dummyData";
 import { InfoRow } from "./InfoRow";
 

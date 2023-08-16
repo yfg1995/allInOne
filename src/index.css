@@ -3,7 +3,7 @@
 @import 'tailwindcss/utilities';
 
 body {
-  margin: 0 100px;
+  margin: 50px 100px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -14,6 +14,30 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.item:not(:last-of-type) {
-  border-bottom: 1px solid rgb(203 213 225 / var(--tw-border-opacity));
+
+.toggleInput::before {
+  content: "";
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 7%;
+  background: #fff;
+  transition: all 0.3s;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.toggleActive {
+  --tw-bg-opacity: 1;
+  background-color: rgb(107 114 128 / var(--tw-bg-opacity));
+}
+.toggleActive::before {
+  left: 60%;
+}
+
+.displayNone {
+  display: block;
 }

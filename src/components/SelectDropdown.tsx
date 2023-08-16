@@ -1,4 +1,4 @@
-import { useState, FC } from "react";
+import { useState, FC, CSSProperties } from "react";
 
 export type TSelectOption = {
   value: string;
@@ -42,7 +42,7 @@ export const SelectDropdown: FC<ISelect> = ({
     <div className="relative mr-5 cursor-pointer">
       <div
         style={{ borderRadius: "10px 10px 0 0" }}
-        className="relative p-2.5 w-1/4 text-lg border border-slate-300"
+        className="relative p-2.5 w-1/2 text-lg border border-slate-300"
         onClick={handleToggle}
       >
         {name && (
@@ -55,12 +55,12 @@ export const SelectDropdown: FC<ISelect> = ({
 
       {toggle && (
         <div
-          className="absolute top-full left-0 border border-slate-300 mt-[-1px] w-full z-10 rounded-bl-xl"
-          style={{ maxHeight: `${itemHeight * 4}px`, overflowY: "auto" }}
+          className="absolute top-full left-0 border border-slate-300 mt-[-1px] w-1/2 z-10 rounded-bl-xl overflow-x-auto max-h-[var(--item-height)] divide-y divide-y-slate-300"
+          style={{ "--item-height": `${itemHeight * 4}px` } as CSSProperties}
         >
           {options.map((option) => (
             <div
-              className="item bg-white flex justify-center items-center cursor-pointer transition hover:bg-green-400"
+              className="bg-white flex justify-center items-center cursor-pointer transition hover:bg-green-400"
               key={option.id}
               style={{
                 color: selectedId === option.id ? "blue" : "black",

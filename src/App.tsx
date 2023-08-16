@@ -1,11 +1,11 @@
-import { Info } from "./Info/Info";
-import { OurServices } from "./OurServices";
+// import { Exercise1 } from "./exercises/exercise1/Exercise1";
+import { Exercise2 } from "./exercises/exercise2/Exercise2";
 
 function App() {
   return (
     <>
-      <OurServices />
-      <Info />
+      {/* <Exercise1 /> */}
+      <Exercise2 />
     </>
   );
 }

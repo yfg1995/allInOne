@@ -1,4 +1,5 @@
 import { ReactNode, useState, FC } from "react";
+import { classNames } from "../helpers/helpers";
 
 type TTab = {
   id: string;
@@ -29,8 +30,9 @@ export const Tabs: FC<ITabs> = ({
   };
 
   return (
-    <div className={`flex gap-4 flex-col ${className}`}>
-      <div className={`flex space-x-4 ${navClassName}`}>
+    <div className={classNames("flex gap-4 flex-col", className)}>
+      {/* <div className={`flex gap-4 flex-col ${className}`}> */}
+      <div className={classNames("flex space-x-4", navClassName)}>
         {tabs.map((tab) => (
           <button
             key={tab.id}

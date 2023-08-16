@@ -1,4 +1,5 @@
 import { ButtonHTMLAttributes, FC } from "react";
+import { classNames } from "../helpers/helpers";
 
 interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   title: string;
@@ -12,7 +13,11 @@ export const Button: FC<IButton> = ({
 }) => {
   return (
     <button
-      className={`${className} w-full p-3 my-4 bg-slate-300 flex justify-center font-medium text-lg cursor-pointer transition-all disabled:opacity-50 disabled:pointer-events-none border rounded-lg hover:bg-white hover:text-black hover:border`}
+      className={classNames(
+        "w-full p-3 mt-4 bg-gray-500 text-white flex justify-center font-medium text-lg cursor-pointer transition-all disabled:opacity-50 disabled:pointer-events-none border rounded-lg hover:bg-white hover:text-black hover:border",
+        className
+        // props.disabled && "opacity-50"
+      )}
       onClick={onClick}
       {...props}
     >
