@@ -19,7 +19,7 @@ export const Toggle: FC<IToggle> = ({ defaultToggled, switched }) => {
       <input
         className={`${
           toggle ? "toggleActive" : ""
-        } toggleInput appearance-none	min-w-[48px] min-h-[22px] relative rounded-3xl cursor-pointer transition-all select-none	 bg-slate-300 `}
+        } toggleInput appearance-none	min-w-[48px] min-h-[22px] relative rounded-3xl cursor-pointer transition-all select-none bg-slate-300`}
         type="checkbox"
       />
     </div>

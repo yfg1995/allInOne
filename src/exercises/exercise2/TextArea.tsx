@@ -38,7 +38,8 @@ export const TextArea: FC<ITextArea> = ({
       <textarea
         onChange={onTextAreaChange}
         className="w-full border focus:outline-none h-32 p-2 resize-none"
-      ></textarea>
+        required
+      />
 
       <Button title="Save" onClick={onInputSave} />
     </div>

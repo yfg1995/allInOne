@@ -6,13 +6,17 @@ interface TSwitcher extends PropsWithChildren {
   title: string;
   active?: boolean;
   className?: string;
+  checkedClass?: string;
+  unCheckedClass?: string;
 }
 
 export const Switcher: FC<TSwitcher> = ({
-  title,
   children,
+  title,
   active,
   className,
+  checkedClass,
+  unCheckedClass,
 }) => {
   const [isActive, setIsActive] = useState(active || false);
   const activeToggle = (bool: boolean) => {
@@ -28,8 +32,8 @@ export const Switcher: FC<TSwitcher> = ({
 
       <div
         className={classNames(
-          "flex items-center w-full overflow-y-auto justify-center h-72 transition-all overflow-hidden",
-          isActive ? "h-72" : "h-0"
+          "flex items-center w-full overflow-y-auto justify-center transition-all overflow-hidden",
+          isActive ? checkedClass : unCheckedClass
         )}
       >
         <div className="-mt-[4px] w-full">{children}</div>
