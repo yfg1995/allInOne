@@ -9,7 +9,7 @@ export interface ILabel extends PropsWithChildren {
 export const Label: FC<ILabel> = ({ title, children, className }) => {
   return (
     <div className={classNames("relative", className)}>
-      <span className="absolute top-[-10px] left-[10px] px-2 text-slate-500 bg-white text-sm">
+      <span className="absolute top-[-10px] left-[10px] px-2 text-slate-500 bg-white z-10 text-sm">
         {title}
       </span>
       {children}

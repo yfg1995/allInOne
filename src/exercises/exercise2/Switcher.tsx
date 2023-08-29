@@ -2,7 +2,7 @@ import { FC, PropsWithChildren, useState } from "react";
 import { Toggle } from "../../components/Toggle";
 import { classNames } from "../../helpers/helpers";
 
-interface TSwitcher extends PropsWithChildren {
+export interface ISwitcher extends PropsWithChildren {
   title: string;
   active?: boolean;
   className?: string;
@@ -10,7 +10,7 @@ interface TSwitcher extends PropsWithChildren {
   unCheckedClass?: string;
 }
 
-export const Switcher: FC<TSwitcher> = ({
+export const Switcher: FC<ISwitcher> = ({
   children,
   title,
   active,

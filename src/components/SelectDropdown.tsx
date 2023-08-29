@@ -10,6 +10,7 @@ export interface ISelect {
   options: TSelectOption[];
   name?: string;
   defaultSelectedId?: string;
+  className?: string;
   onSelect?: (id: string) => void;
   onSave?: (value: string) => void;
 }
@@ -18,6 +19,7 @@ export const SelectDropdown: FC<ISelect> = ({
   options,
   defaultSelectedId,
   name,
+  className,
   onSelect,
   onSave,
 }) => {
@@ -43,7 +45,10 @@ export const SelectDropdown: FC<ISelect> = ({
     <div className="relative mr-5 cursor-pointer">
       <div
         style={{ borderRadius: "10px 10px 0 0" }}
-        className="relative flex justify-between items-center p-2.5 w-1/2 text-lg border border-slate-300"
+        className={classNames(
+          "relative flex justify-between items-center p-2.5 w-1/2 text-lg border border-slate-300",
+          className
+        )}
         onClick={handleToggle}
       >
         {name && (
@@ -54,27 +59,22 @@ export const SelectDropdown: FC<ISelect> = ({
         {options.find((option) => option.id === selectedId)?.value}
 
         <svg
-          viewBox="0 0 511.735 511.735"
+          viewBox="0 0 24 24"
           className={classNames(
-            "transition-all h-3 w-3 mr-1.5",
+            "transition-all h-5 w-5",
             toggle ? "rotate-180" : ""
           )}
         >
-          <g>
-            <g>
-              <path
-                d="M508.788,371.087L263.455,125.753c-4.16-4.16-10.88-4.16-15.04,0L2.975,371.087c-4.053,4.267-3.947,10.987,0.213,15.04
-			c4.16,3.947,10.667,3.947,14.827,0l237.867-237.76l237.76,237.76c4.267,4.053,10.987,3.947,15.04-0.213
-			C512.734,381.753,512.734,375.247,508.788,371.087z"
-              />
-            </g>
-          </g>
+          <path d="M5.70711 9.71069C5.31658 10.1012 5.31658 10.7344 5.70711 11.1249L10.5993 16.0123C11.3805 16.7927 12.6463 16.7924 13.4271 16.0117L18.3174 11.1213C18.708 10.7308 18.708 10.0976 18.3174 9.70708C17.9269 9.31655 17.2937 9.31655 16.9032 9.70708L12.7176 13.8927C12.3271 14.2833 11.6939 14.2832 11.3034 13.8927L7.12132 9.71069C6.7308 9.32016 6.09763 9.32016 5.70711 9.71069Z" />
         </svg>
       </div>
 
       {toggle && (
         <div
-          className="absolute top-full left-0 border border-slate-300 mt-[-1px] w-1/2 z-10 rounded-bl-xl overflow-x-auto max-h-[var(--item-height)] divide-y divide-y-slate-300"
+          className={classNames(
+            "absolute top-full left-0 border border-slate-300 mt-[-1px] w-1/2 z-10 rounded-bl-xl overflow-x-auto max-h-[var(--item-height)] divide-y divide-y-slate-300",
+            className
+          )}
           style={{ "--item-height": `${itemHeight * 4}px` } as CSSProperties}
         >
           {options.map((option) => (

@@ -2,8 +2,8 @@ import { useState, FC } from "react";
 import { Section } from "../../../components/Section";
 import { SelectDropdown } from "../../../components/SelectDropdown";
 import { Button } from "../../../components/Button";
-import { infoTabsItems } from "../dummyData";
 import { InfoRow } from "./InfoRow";
+import { infoTabsItems } from "../../../dummyData";
 
 export const Info: FC = () => {
   const [currentState, setCurrentState] = useState<{ [key: string]: string }>({
