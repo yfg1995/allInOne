@@ -9,13 +9,10 @@ import { Button } from "../../components/Button";
 
 export const Exercise3 = () => {
   const [checked, setChecked] = useState(false);
-  // const [numOfBedsState, setNumOfBedsState] = useState("");
-  // const [sizeOfBedsState, setSizeOfBedsState] = useState("");
   const [currentState, setCurrentState] = useState<{ [key: string]: string }>({
     numOfBeds: "",
     sizeOfBeds: "",
   });
-  const [nesto, setNesto] = useState<{ [key: string]: string }[]>([]);
 
   const handleOnChange =
     (key: "numOfBeds" | "sizeOfBeds") => (value: string) => {
@@ -30,8 +27,12 @@ export const Exercise3 = () => {
     setChecked((prev) => !prev);
   };
 
+  const nesto: { [key: string]: string | boolean }[] = [];
+
   const onHandleAdd = () => {
-    nesto.push(currentState);
+    setChecked(true);
+    nesto.push({ ...currentState, checked });
+    console.log(nesto);
   };
 
   return (
@@ -69,7 +70,7 @@ export const Exercise3 = () => {
         />
       </div>
 
-      <SelectContainer className="ml-40" nums={nesto} />
+      <SelectContainer className="ml-40" nesto={nesto} />
     </div>
   );
 };

@@ -36,7 +36,7 @@ export const SelectDropdown: FC<ISelect> = ({
     setSelectedId(id);
     onSelect?.(id);
     setToggle(false);
-    onSave?.(options[parseInt(selectedId)].value);
+    onSave?.(options.find((option) => option.id === id)?.value || "");
   };
 
   const itemHeight = 50;
