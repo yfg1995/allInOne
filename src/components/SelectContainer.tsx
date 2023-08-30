@@ -18,15 +18,17 @@ export const SelectContainer: FC<ISelectContainer> = ({
         className
       )}
     >
-      {items.map((nes, index) => (
+      {items.map((item, index) => (
         <button
           key={index}
           className="flex items-center h-8 text-sm border border-slate-400 rounded-lg bg-white py-0.5 pl-1.5"
           onClick={() => onRemoveItem(index)}
         >
-          {nes.numOfBeds}
-          {nes.numOfBeds === "1" ? ` ${nes.sizeOfBeds}` : ` ${nes.sizeOfBeds}s`}
-          {nes.checked ? " + Sofa" : ""}
+          {item.numOfBeds}
+          {item.numOfBeds === "1"
+            ? ` ${item.sizeOfBeds}`
+            : ` ${item.sizeOfBeds}s`}
+          {item.checked ? " + Sofa" : ""}
           <svg viewBox="0 0 24 24" className="w-6 h-6 mt-0.5">
             <path
               d="M16 16L12 12M12 12L8 8M12 12L16 8M12 12L8 16"
