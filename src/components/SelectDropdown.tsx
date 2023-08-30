@@ -8,7 +8,7 @@ export type TSelectOption = {
 
 export interface ISelect {
   options: TSelectOption[];
-  name?: string;
+  isEmptyInit?: boolean;
   defaultSelectedId?: string;
   className?: string;
   onSelect?: (id: string) => void;
@@ -18,13 +18,13 @@ export interface ISelect {
 export const SelectDropdown: FC<ISelect> = ({
   options,
   defaultSelectedId,
-  name,
   className,
+  isEmptyInit,
   onSelect,
   onSave,
 }) => {
   const [selectedId, setSelectedId] = useState(
-    defaultSelectedId || options[0]?.id
+    isEmptyInit ? null : defaultSelectedId || options[0]?.id
   );
   const [toggle, setToggle] = useState(false);
 
@@ -51,13 +51,7 @@ export const SelectDropdown: FC<ISelect> = ({
         )}
         onClick={handleToggle}
       >
-        {name && (
-          <div className="absolute top-[-12px] left-2.5 font-bold text-xs text-red-600 bg-white py-0.5 px-1">
-            {name}
-          </div>
-        )}
-        {options.find((option) => option.id === selectedId)?.value}
-
+        {options.find((option) => option.id === selectedId)?.value || ""}
         <svg
           viewBox="0 0 24 24"
           className={classNames(

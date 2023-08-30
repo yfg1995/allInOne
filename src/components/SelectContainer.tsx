@@ -14,14 +14,14 @@ export const SelectContainer: FC<ISelectContainer> = ({
   return (
     <div
       className={classNames(
-        "flex flex-wrap border border-slate-400 rounded-lg bg-slate-200 p-1 w-52",
+        "flex flex-wrap flex-1 border border-slate-400 rounded-lg bg-slate-200 p-4 w-52",
         className
       )}
     >
       {items.map((nes, index) => (
         <button
           key={index}
-          className="flex items-center h-8 text-sm border border-slate-400 rounded-lg bg-white py-0.5 pl-1.5 m-1.5"
+          className="flex items-center h-8 text-sm border border-slate-400 rounded-lg bg-white py-0.5 pl-1.5"
           onClick={() => onRemoveItem(index)}
         >
           {nes.numOfBeds}

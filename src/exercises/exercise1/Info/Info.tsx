@@ -4,6 +4,7 @@ import { SelectDropdown } from "../../../components/SelectDropdown";
 import { Button } from "../../../components/Button";
 import { InfoRow } from "./InfoRow";
 import { infoTabsItems } from "../../../dummyData";
+import { Label } from "../../../components/Label";
 
 export const Info: FC = () => {
   const [currentState, setCurrentState] = useState<{ [key: string]: string }>({
@@ -48,11 +49,12 @@ export const Info: FC = () => {
 
       <InfoRow rowTitle="Phone" onChange={handleOnChange("phone")} />
 
-      <SelectDropdown
-        onSave={handleOnChange("location")}
-        options={infoTabsItems}
-        name="Location"
-      />
+      <Label title="Location">
+        <SelectDropdown
+          onSave={handleOnChange("location")}
+          options={infoTabsItems}
+        />
+      </Label>
 
       <Button title="Save" onClick={handleSubmit} />
     </Section>

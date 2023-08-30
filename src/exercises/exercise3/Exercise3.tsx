@@ -1,17 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Checkbox } from "../../components/Checkbox";
 import { Label } from "../../components/Label";
 import { SelectDropdown } from "../../components/SelectDropdown";
-import { numOfBeds } from "../../dummyData";
-import { sizeOfBeds } from "../../dummyData";
+import { numOfBeds, sizeOfBeds } from "../../dummyData";
 import { SelectContainer } from "../../components/SelectContainer";
 import { Button } from "../../components/Button";
 
+type TItem = {
+  [key: string]: string | boolean;
+  numOfBeds: string;
+  sizeOfBeds: string;
+  checked: boolean;
+};
+
 export const Exercise3 = () => {
-  const [checked, setChecked] = useState(false);
-  const [currentItems, setCurrentItems] = useState<{
-    [key: string]: string | boolean;
-  }>({
+  const [currentItems, setCurrentItems] = useState<TItem>({
     numOfBeds: "",
     sizeOfBeds: "",
     checked: false,
@@ -19,58 +22,81 @@ export const Exercise3 = () => {
   const [newItems, setNewItems] = useState<
     { [key: string]: string | boolean }[]
   >([]);
-  const [sameItems, setSameItems] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   const handleOnChange =
     (key: "numOfBeds" | "sizeOfBeds" | "checked") =>
     (value: string | boolean) => {
       setCurrentItems((prev) => {
-        const newState = { ...prev };
-        newState[key] = value;
-        return newState;
+        const newItemsOnChange = { ...prev, [key]: value };
+        disableButton(newItems as TItem[], newItemsOnChange);
+        return newItemsOnChange;
       });
     };
 
   const onHandleCheck = () => {
-    const updatedChecked = !checked;
-    setChecked(updatedChecked);
-    handleOnChange("checked")(updatedChecked);
+    setCurrentItems((prev) => {
+      const updatedChecked = !prev.checked;
+      const newItemsOnChange = { ...prev, checked: updatedChecked };
+      handleOnChange("checked")(updatedChecked);
+      disableButton(newItems as TItem[], newItemsOnChange);
+      return newItemsOnChange;
+    });
   };
 
-  const firstItem = newItems[0];
-  useEffect(() => {
+  const areItemsEqual = (item1: TItem, item2: TItem): boolean => {
     if (
-      newItems.length > 0 &&
-      Object.keys(currentItems).every(
-        (key) => currentItems[key] === firstItem[key]
-      )
+      item1.numOfBeds === item2.numOfBeds &&
+      item1.sizeOfBeds === item2.sizeOfBeds &&
+      item1.checked === item2.checked
     ) {
-      setSameItems(true);
-    } else {
-      setSameItems(false);
+      return true;
     }
-  }, [firstItem, currentItems, newItems.length]);
+    return false;
+  };
+
+  const disableButton = (items: TItem[], curItems: TItem) => {
+    if (items.length === 0) {
+      // (!items.lenght)
+      setIsButtonDisabled(false);
+      return;
+    }
+
+    setIsButtonDisabled(
+      items.some((item) => {
+        return areItemsEqual(item as TItem, curItems as TItem);
+      })
+    );
+  };
 
   const onHandleAdd = () => {
     const newItem = { ...currentItems };
-    setNewItems((prevNesto) => [...prevNesto, newItem]);
+    setNewItems((prev) => {
+      const newItemsCopy = [...prev, newItem];
+      disableButton(newItemsCopy as TItem[], currentItems);
+      return newItemsCopy;
+    });
   };
 
   const handleRemoveItem = (indexToRemove: number) => {
-    const updatedNesto = newItems.filter(
-      (_, index) => index.toString() !== indexToRemove.toString()
-    );
-    setNewItems(updatedNesto);
+    setNewItems((prev) => {
+      const newItemsCopy = prev.filter(
+        (_, index) => index.toString() !== indexToRemove.toString()
+      );
+      disableButton(newItemsCopy as TItem[], currentItems);
+      return newItemsCopy;
+    });
   };
 
   return (
-    <div className="flex">
+    <div className="flex items-start gap-x-8">
       <div>
         <div className="flex items-center">
           <Label title="# of beds">
             <SelectDropdown
               options={numOfBeds}
               className="w-28"
+              isEmptyInit
               onSave={handleOnChange("numOfBeds")}
             />
           </Label>
@@ -79,13 +105,14 @@ export const Exercise3 = () => {
             <SelectDropdown
               options={sizeOfBeds}
               className="w-40"
+              isEmptyInit
               onSave={handleOnChange("sizeOfBeds")}
             />
           </Label>
 
           <Checkbox
             label="Pull-out sofa"
-            checked={checked}
+            checked={!!currentItems.checked}
             className="flex items-center"
             onChange={onHandleCheck}
           />
@@ -95,15 +122,17 @@ export const Exercise3 = () => {
           title="Add Bed Type"
           className="bg-blue-500 rounded-full mt-6"
           onClick={onHandleAdd}
-          disabled={sameItems}
+          disabled={isButtonDisabled}
         />
       </div>
 
-      <SelectContainer
-        className="ml-40"
-        items={newItems}
-        onRemoveItem={handleRemoveItem}
-      />
+      {!!newItems.length && (
+        <SelectContainer
+          items={newItems}
+          className="gap-4"
+          onRemoveItem={handleRemoveItem}
+        />
+      )}
     </div>
   );
 };
