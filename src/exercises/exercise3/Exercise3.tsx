@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Checkbox from "../../components/Checkbox";
+import { Checkbox } from "../../components/Checkbox";
 import { Label } from "../../components/Label";
 import { SelectDropdown } from "../../components/SelectDropdown";
 import { numOfBeds } from "../../dummyData";
@@ -54,8 +54,6 @@ export const Exercise3 = () => {
   const onHandleAdd = () => {
     const newItem = { ...currentItems };
     setNewItems((prevNesto) => [...prevNesto, newItem]);
-
-    console.log(sameItems);
   };
 
   const handleRemoveItem = (indexToRemove: number) => {

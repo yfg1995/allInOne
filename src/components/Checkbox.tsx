@@ -1,3 +1,4 @@
+import { ChangeEvent, FC } from "react";
 import { classNames } from "../helpers/helpers";
 
 interface ICheckbox {
@@ -7,13 +8,13 @@ interface ICheckbox {
   onChange: (checked: boolean) => void;
 }
 
-const Checkbox: React.FC<ICheckbox> = ({
+export const Checkbox: FC<ICheckbox> = ({
   label,
   checked,
   className,
   onChange,
 }) => {
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     onChange?.(event.target.checked);
   };
 
@@ -29,5 +30,3 @@ const Checkbox: React.FC<ICheckbox> = ({
     </label>
   );
 };
-
-export default Checkbox;
