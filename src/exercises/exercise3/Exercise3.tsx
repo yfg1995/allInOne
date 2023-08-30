@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Checkbox from "../../components/Checkbox";
 import { Label } from "../../components/Label";
 import { SelectDropdown } from "../../components/SelectDropdown";
@@ -9,30 +9,60 @@ import { Button } from "../../components/Button";
 
 export const Exercise3 = () => {
   const [checked, setChecked] = useState(false);
-  const [currentState, setCurrentState] = useState<{ [key: string]: string }>({
+  const [currentItems, setCurrentItems] = useState<{
+    [key: string]: string | boolean;
+  }>({
     numOfBeds: "",
     sizeOfBeds: "",
+    checked: false,
   });
+  const [newItems, setNewItems] = useState<
+    { [key: string]: string | boolean }[]
+  >([]);
+  const [sameItems, setSameItems] = useState(false);
 
   const handleOnChange =
-    (key: "numOfBeds" | "sizeOfBeds") => (value: string) => {
-      setCurrentState((prev) => {
-        const newState = prev;
+    (key: "numOfBeds" | "sizeOfBeds" | "checked") =>
+    (value: string | boolean) => {
+      setCurrentItems((prev) => {
+        const newState = { ...prev };
         newState[key] = value;
         return newState;
       });
     };
 
   const onHandleCheck = () => {
-    setChecked((prev) => !prev);
+    const updatedChecked = !checked;
+    setChecked(updatedChecked);
+    handleOnChange("checked")(updatedChecked);
   };
 
-  const nesto: { [key: string]: string | boolean }[] = [];
+  const firstItem = newItems[0];
+  useEffect(() => {
+    if (
+      newItems.length > 0 &&
+      Object.keys(currentItems).every(
+        (key) => currentItems[key] === firstItem[key]
+      )
+    ) {
+      setSameItems(true);
+    } else {
+      setSameItems(false);
+    }
+  }, [firstItem, currentItems, newItems.length]);
 
   const onHandleAdd = () => {
-    setChecked(true);
-    nesto.push({ ...currentState, checked });
-    console.log(nesto);
+    const newItem = { ...currentItems };
+    setNewItems((prevNesto) => [...prevNesto, newItem]);
+
+    console.log(sameItems);
+  };
+
+  const handleRemoveItem = (indexToRemove: number) => {
+    const updatedNesto = newItems.filter(
+      (_, index) => index.toString() !== indexToRemove.toString()
+    );
+    setNewItems(updatedNesto);
   };
 
   return (
@@ -67,10 +97,15 @@ export const Exercise3 = () => {
           title="Add Bed Type"
           className="bg-blue-500 rounded-full mt-6"
           onClick={onHandleAdd}
+          disabled={sameItems}
         />
       </div>
 
-      <SelectContainer className="ml-40" nesto={nesto} />
+      <SelectContainer
+        className="ml-40"
+        items={newItems}
+        onRemoveItem={handleRemoveItem}
+      />
     </div>
   );
 };
