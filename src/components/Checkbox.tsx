@@ -24,7 +24,7 @@ export const Checkbox: FC<ICheckbox> = ({
         type="checkbox"
         checked={checked}
         onChange={handleChange}
-        className="mr-2"
+        className="mr-2 cursor-pointer"
       />
       {label}
     </label>
