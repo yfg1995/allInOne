@@ -32,13 +32,13 @@ export const Input: FC<IInput> = ({
   return (
     <div
       className={classNames(
-        "flex items-center gap-4 h-10 [&>*]:border [&>*]:rounded-lg [&>*]:h-full [&>*]:px-4 w-full",
+        "flex items-center gap-4 h-11 [&>*]:border [&>*]:rounded-lg [&>*]:h-full [&>*]:px-4",
         className
       )}
     >
       <input
         type="text"
-        className="focus:outline-none w-full"
+        className="focus:outline-none w-full border-slate-400"
         value={inputValue}
         onChange={onInputChange}
         placeholder={placeholder}
