@@ -4,16 +4,18 @@ import { IconTrashCan } from "../../icons/IconTrashCan";
 import { IconEdit } from "../../icons/IconEdit";
 // import { Input } from "../../components/Input";
 
-type TUser = {
+export type TUser = {
   id: string;
   name: string;
+  rewards?: { title: string; value: string }[];
 };
 interface IUsers {
   users: TUser[];
   activeId: string;
+  onActiveChange: (id: string) => void;
 }
 
-export const Users: FC<IUsers> = ({ users, activeId }) => {
+export const Users: FC<IUsers> = ({ users, activeId, onActiveChange }) => {
   // const [isHovered, setIsHovered] = useState<string | null>(null);
 
   // const handleMouseEnter = (userId: string) => {
@@ -23,6 +25,10 @@ export const Users: FC<IUsers> = ({ users, activeId }) => {
   // const handleMouseLeave = () => {
   //   setIsHovered(null);
   // };
+
+  const onClickHandler = (id: string) => () => {
+    onActiveChange(id);
+  };
 
   return (
     <div className="w-2/5">
@@ -40,19 +46,22 @@ export const Users: FC<IUsers> = ({ users, activeId }) => {
             key={user.id}
             // onMouseEnter={() => handleMouseEnter(user.id)}
             // onMouseLeave={handleMouseLeave}
-            className="flex justify-between py-2 px-5 cursor-pointer group"
+            onClick={onClickHandler(user.id)}
+            className={`flex justify-between py-2 px-5 cursor-pointer group ${
+              activeId === user.id ? "bg-blue-100" : ""
+            }`}
           >
             <p>{user.name}</p>
 
-            <div className="opacity-0 transition group-hover:opacity-100">
+            <div className="flex items-center">
               {/* <div className={`${isHovered !== user.id ? "hidden" : ""} flex`}> */}
 
-              <button>
-                <IconEdit className="text-r w-4 h-4 mr-4 hover:scale-110 transition" />
+              <button className="scale-0 opactiy-0 transition group-hover:scale-100 group-hover:opacity-100">
+                <IconEdit className="fill-[#00F] w-4 h-4 mr-4 hover:scale-110 transition" />
               </button>
 
-              <button>
-                <IconTrashCan className="hover:scale-110 w-4 h-4 transition" />
+              <button className="scale-0 opactiy-0 transition group-hover:scale-100 group-hover:opacity-100">
+                <IconTrashCan className="fill-[#AAA] hover:scale-110 w-4 h-4 transition" />
               </button>
             </div>
           </li>
@@ -61,5 +70,3 @@ export const Users: FC<IUsers> = ({ users, activeId }) => {
     </div>
   );
 };
-
-// id treba da je random | vidi na gpt

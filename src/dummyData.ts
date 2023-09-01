@@ -1,3 +1,5 @@
+import { generateRandomUniqueId } from "./helpers/helpers";
+
 export const infoTabsItems = [
   {
     id: "1",
@@ -62,3 +64,71 @@ export const sizeOfBeds = [
     value: "Twin",
   },
 ]
+
+// REWARD POINTS
+export const inputs = [
+  {
+    title: "Best Western Rewards",
+    id: generateRandomUniqueId(),
+  },
+  {
+    title: "Caesars Rewards",
+    id: generateRandomUniqueId(),
+  },
+  {
+    title: "Choice Privileges",
+    id: generateRandomUniqueId(),
+  },
+  {
+    title: "Drury Gold Key Club",
+    id: generateRandomUniqueId(),
+  },
+  {
+    title: "Fairmont Presidents Club",
+    id: generateRandomUniqueId(),
+  },
+  {
+    title: "Hilton Honors",
+    id: generateRandomUniqueId(),
+  },
+  {
+    title: "Hyatt Gold Passport",
+    id: generateRandomUniqueId(),
+  },
+  {
+    title: "IHC Rewards",
+    id: generateRandomUniqueId(),
+  },
+  {
+    title: "IHC Rewards",
+    id: generateRandomUniqueId(),
+  },
+  {
+    title: "Kimpton Karma",
+    id: generateRandomUniqueId(),
+  },
+  {
+    title: "La Quinta Returns",
+    id: generateRandomUniqueId(),
+  },
+  {
+    title: "Le Club Accor",
+    id: generateRandomUniqueId(),
+  },
+  {
+    title: "Loews You First",
+    id: generateRandomUniqueId(),
+  },
+  {
+    title: "M Life Rewards",
+    id: generateRandomUniqueId(),
+  },
+  {
+    title: "Marriot Bonvoy",
+    id: generateRandomUniqueId(),
+  },
+  {
+    title: "Omni Select",
+    id: generateRandomUniqueId(),
+  },
+];

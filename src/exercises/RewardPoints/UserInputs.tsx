@@ -1,75 +1,28 @@
 import { FC } from "react";
 import { Label } from "../../components/Label";
 import { Input } from "../../components/Input";
+import { TUser } from "./Users";
+import { inputs } from "../../dummyData";
 
-interface IUserInputs {}
+interface IUserInputs {
+  users: TUser[];
+  activeId: string;
+}
 
-export const UserInputs: FC<IUserInputs> = () => {
+export const UserInputs: FC<IUserInputs> = ({ users, activeId }) => {
+  const activeUser = users.find((user) => user.id === activeId);
+  const rewards = activeUser?.rewards || [];
+
   return (
     <div className="flex flex-wrap justify-end w-1/2 gap-y-6 gap-x-8">
-      <Label title="Best Western Rewards">
-        <Input />
-      </Label>
-
-      <Label title="Caesars Rewards">
-        <Input />
-      </Label>
-
-      <Label title="Choice Privileges">
-        <Input />
-      </Label>
-
-      <Label title="Drury Gold Key Club">
-        <Input />
-      </Label>
-
-      <Label title="Fairmont Presidents Club">
-        <Input />
-      </Label>
-
-      <Label title="Hilton Honors">
-        <Input />
-      </Label>
-
-      <Label title="Hyatt Gold Passport">
-        <Input />
-      </Label>
-
-      <Label title="IHG Rewards">
-        <Input />
-      </Label>
-
-      <Label title="Kimpton Karma">
-        <Input />
-      </Label>
-
-      <Label title="La Quinta Returns">
-        <Input />
-      </Label>
-
-      <Label title="Le Club Accor">
-        <Input />
-      </Label>
-
-      <Label title="Loews You First">
-        <Input />
-      </Label>
-
-      <Label title="M Life Rewards">
-        <Input />
-      </Label>
-
-      <Label title="Marriot Bonvoy">
-        <Input />
-      </Label>
-
-      <Label title="Omni Select">
-        <Input />
-      </Label>
-
-      <Label title="Radisson Rewards">
-        <Input />
-      </Label>
+      {inputs.map(({ id, title }) => {
+        const foundReward = rewards.find((reward) => reward.title === title);
+        return (
+          <Label key={`${activeId}-${id}`} title={title}>
+            <Input value={foundReward?.value || ""} />
+          </Label>
+        );
+      })}
     </div>
   );
 };

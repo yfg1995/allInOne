@@ -1,28 +1,49 @@
 import { useState } from "react";
 import { UserInputs } from "./UserInputs";
 import { Users } from "./Users";
+import { generateRandomUniqueId } from "../../helpers/helpers";
 
 export const RewardPoints = () => {
   const [userNames, setUserNames] = useState([
     {
-      id: "1",
+      id: generateRandomUniqueId(),
       name: "Kristin Watson",
+      rewards: [
+        {
+          title: "Best Western Rewards",
+          value: "1234",
+        },
+        {
+          title: "Caesars Rewards",
+          value: "djole",
+        },
+      ],
     },
     {
-      id: "2",
+      id: generateRandomUniqueId(),
       name: "Ralph Edwards",
+      rewards: [],
     },
     {
-      id: "3",
+      id: generateRandomUniqueId(),
       name: "Devon McKinney",
+      rewards: [],
     },
   ]);
-  const [activeId, setActiveId] = useState("2");
+  const [activeId, setActiveId] = useState(userNames[0].id);
+
+  const onActiveChange = (id: string) => {
+    setActiveId(id);
+  };
 
   return (
     <div className="flex justify-between px-20">
-      <Users users={userNames} activeId={activeId} />
-      <UserInputs />
+      <Users
+        users={userNames}
+        activeId={activeId}
+        onActiveChange={onActiveChange}
+      />
+      <UserInputs users={userNames} activeId={activeId} />
     </div>
   );
 };
