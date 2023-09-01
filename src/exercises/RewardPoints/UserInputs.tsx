@@ -2,9 +2,11 @@ import { FC } from "react";
 import { Label } from "../../components/Label";
 import { Input } from "../../components/Input";
 
-export const UserInputs: FC = () => {
+interface IUserInputs {}
+
+export const UserInputs: FC<IUserInputs> = () => {
   return (
-    <div className="flex flex-wrap w-1/2 gap-y-6 gap-x-8">
+    <div className="flex flex-wrap justify-end w-1/2 gap-y-6 gap-x-8">
       <Label title="Best Western Rewards">
         <Input />
       </Label>
