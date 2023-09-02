@@ -16,22 +16,12 @@ interface IUsers {
 }
 
 export const Users: FC<IUsers> = ({ users, activeId, onActiveChange }) => {
-  // const [isHovered, setIsHovered] = useState<string | null>(null);
-
-  // const handleMouseEnter = (userId: string) => {
-  //   setIsHovered(userId);
-  // };
-
-  // const handleMouseLeave = () => {
-  //   setIsHovered(null);
-  // };
-
   const onClickHandler = (id: string) => () => {
     onActiveChange(id);
   };
 
   return (
-    <div className="w-2/5">
+    <div className="w-2/5 px-10">
       <div className="flex justify-between items-center border rounded-lg bg-slate-50 rounded-b-none border-slate-200 py-2 px-5">
         <h2 className="font-bold select-none">Profile name</h2>
 
@@ -44,8 +34,6 @@ export const Users: FC<IUsers> = ({ users, activeId, onActiveChange }) => {
         {users.map((user) => (
           <li
             key={user.id}
-            // onMouseEnter={() => handleMouseEnter(user.id)}
-            // onMouseLeave={handleMouseLeave}
             onClick={onClickHandler(user.id)}
             className={`flex justify-between py-2 px-5 cursor-pointer group ${
               activeId === user.id ? "bg-blue-100" : ""
@@ -54,14 +42,12 @@ export const Users: FC<IUsers> = ({ users, activeId, onActiveChange }) => {
             <p>{user.name}</p>
 
             <div className="flex items-center">
-              {/* <div className={`${isHovered !== user.id ? "hidden" : ""} flex`}> */}
-
               <button className="scale-0 opactiy-0 transition group-hover:scale-100 group-hover:opacity-100">
-                <IconEdit className="fill-[#00F] w-4 h-4 mr-4 hover:scale-110 transition" />
+                <IconEdit className="fill-[#00F] w-4 h-4 mr-4 hover:scale-125 transition" />
               </button>
 
               <button className="scale-0 opactiy-0 transition group-hover:scale-100 group-hover:opacity-100">
-                <IconTrashCan className="fill-[#AAA] hover:scale-110 w-4 h-4 transition" />
+                <IconTrashCan className="fill-[#AAA] hover:scale-125 w-4 h-4 transition" />
               </button>
             </div>
           </li>

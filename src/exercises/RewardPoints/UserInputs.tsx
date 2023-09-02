@@ -14,7 +14,7 @@ export const UserInputs: FC<IUserInputs> = ({ users, activeId }) => {
   const rewards = activeUser?.rewards || [];
 
   return (
-    <div className="flex flex-wrap justify-end w-1/2 gap-y-6 gap-x-8">
+    <div className="flex flex-wrap w-1/2 gap-y-6 gap-x-8 px-10">
       {inputs.map(({ id, title }) => {
         const foundReward = rewards.find((reward) => reward.title === title);
         return (

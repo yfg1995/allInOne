@@ -37,7 +37,7 @@ export const RewardPoints = () => {
   };
 
   return (
-    <div className="flex justify-between px-20">
+    <div className="flex justify-between">
       <Users
         users={userNames}
         activeId={activeId}

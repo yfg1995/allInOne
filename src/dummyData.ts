@@ -100,10 +100,6 @@ export const inputs = [
     id: generateRandomUniqueId(),
   },
   {
-    title: "IHC Rewards",
-    id: generateRandomUniqueId(),
-  },
-  {
     title: "Kimpton Karma",
     id: generateRandomUniqueId(),
   },
@@ -129,6 +125,10 @@ export const inputs = [
   },
   {
     title: "Omni Select",
+    id: generateRandomUniqueId(),
+  },
+  {
+    title: "Radisson Rewards",
     id: generateRandomUniqueId(),
   },
 ];
