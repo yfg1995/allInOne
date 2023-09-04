@@ -31,10 +31,12 @@ export const Users: FC<IUsers> = ({
   const onClickHandlerAdd = () => {
     setAddIsActive(false);
     onAddNewUser(valueNewUser);
+    setValueNewUser("");
   };
 
   const onClickHandlerCancel = () => {
     setAddIsActive(false);
+    setValueNewUser("");
   };
 
   const onClickHandlerEdit = () => {
@@ -56,31 +58,36 @@ export const Users: FC<IUsers> = ({
   return (
     <div className="w-2/5 px-10">
       {addIsActive ? (
-        <div className="flex items-center relative">
+        <div className="flex items-center relative my-[3px]">
           <Input
             onChange={onChangeHandler}
             value={valueNewUser}
             className="w-full"
-            inputClassName="pr-20 rounded-b-none"
+            inputClassName="pr-[70px] rounded-b-none border-slate-200 py-6"
           />
 
           <div className="flex items-center absolute right-3">
-            <button onClick={onClickHandlerAdd}>
-              <IconCheckMark className="w-6 h-6 mr-2" />
-            </button>
+            {valueNewUser && (
+              <IconCheckMark
+                onClick={onClickHandlerAdd}
+                svgClassName="w-6 h-6 mr-2"
+              />
+            )}
 
-            <button onClick={onClickHandlerCancel}>
-              <IconClose className="w-5 h-5 fill-[#00F]" />
-            </button>
+            <IconClose
+              onClick={onClickHandlerCancel}
+              svgClassName="w-5 h-5 fill-[#00F]"
+            />
           </div>
         </div>
       ) : (
         <div className="flex items-center justify-between border rounded-lg bg-slate-50 rounded-b-none border-slate-200 py-2 px-5">
           <h2 className="font-bold select-none">Profile name</h2>
 
-          <button onClick={onClickHandlerEdit}>
-            <IconUserPlus className="w-8 h-8 fill-[#00F]" />
-          </button>
+          <IconUserPlus
+            onClick={onClickHandlerEdit}
+            svgClassName="w-8 h-8 fill-[#00F] hover:scale-125"
+          />
         </div>
       )}
 

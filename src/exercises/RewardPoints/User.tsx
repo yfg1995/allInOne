@@ -30,24 +30,24 @@ export const User: FC<IUser> = ({
   return (
     <li
       onClick={onSetActive}
-      className={`flex justify-between py-2 px-5 cursor-pointer group ${
+      className={`flex justify-between py-2 px-5 cursor-pointer group hover:bg-blue-100 ${
         activeId === id ? "bg-blue-100" : ""
       }`}
     >
       <p className="line-clamp-1 w-full">{name}</p>
 
       <div className="flex items-center">
-        <button className="scale-0 opacity-0 transition group-hover:scale-100 group-hover:opacity-100">
-          <IconEdit className="fill-[#00F] w-4 h-4 mr-4 hover:scale-125 transition" />
-        </button>
+        <IconEdit
+          className="scale-0 opacity-0 transition group-hover:scale-100 group-hover:opacity-100"
+          svgClassName="fill-[#00F] w-4 h-4 mr-4 hover:scale-125 transition"
+        />
 
         {isOnlyItem ? (
-          <button
+          <IconTrashCan
             onClick={onDeleteUser}
             className="scale-0 opacity-0 transition group-hover:scale-100 group-hover:opacity-100"
-          >
-            <IconTrashCan className="fill-[#AAA] hover:scale-125 w-4 h-4 transition" />
-          </button>
+            svgClassName="fill-[#6b6969] hover:scale-125 w-4 h-4 transition"
+          />
         ) : null}
       </div>
     </li>

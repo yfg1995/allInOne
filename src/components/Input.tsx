@@ -27,10 +27,6 @@ export const Input: FC<IInput> = ({
     onSave?.(newValue);
   };
 
-  // const onInputSave = () => {
-  //   onSave?.(inputValue);
-  // }
-
   return (
     <div
       className={classNames(
@@ -40,6 +36,7 @@ export const Input: FC<IInput> = ({
       )}
     >
       <input
+        autoFocus
         type="text"
         className={classNames(
           "focus:outline-none w-full border-slate-400 px-4 h-full border rounded-lg",
@@ -49,7 +46,6 @@ export const Input: FC<IInput> = ({
         onChange={onInputChange}
         placeholder={placeholder}
       />
-      {/* {!!onSave && <button onClick={onInputSave}>Save</button>} */}
     </div>
   );
 };
