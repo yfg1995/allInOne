@@ -1,8 +1,9 @@
 import { FC, useState } from "react";
 import { IconUserPlus } from "../../icons/IconUserPlus";
-import { IconTrashCan } from "../../icons/IconTrashCan";
-import { IconEdit } from "../../icons/IconEdit";
-// import { Input } from "../../components/Input";
+import { Input } from "../../components/Input";
+import { IconCheckMark } from "../../icons/IconCheckMark";
+import { IconClose } from "../../icons/IconClose";
+import { User } from "./User";
 
 export type TUser = {
   id: string;
@@ -12,45 +13,88 @@ export type TUser = {
 interface IUsers {
   users: TUser[];
   activeId: string;
+  onDeleteUser: (id: string) => void;
   onActiveChange: (id: string) => void;
+  onAddNewUser: (name: string) => void;
 }
 
-export const Users: FC<IUsers> = ({ users, activeId, onActiveChange }) => {
+export const Users: FC<IUsers> = ({
+  users,
+  activeId,
+  onDeleteUser,
+  onActiveChange,
+  onAddNewUser,
+}) => {
+  const [addIsActive, setAddIsActive] = useState(false);
+  const [valueNewUser, setValueNewUser] = useState("");
+
+  const onClickHandlerAdd = () => {
+    setAddIsActive(false);
+    onAddNewUser(valueNewUser);
+  };
+
+  const onClickHandlerCancel = () => {
+    setAddIsActive(false);
+  };
+
+  const onClickHandlerEdit = () => {
+    setAddIsActive(true);
+  };
+
   const onClickHandler = (id: string) => () => {
     onActiveChange(id);
   };
 
+  const onChangeHandler = (value: string) => {
+    setValueNewUser(value);
+  };
+
+  const onClickHandlerDelete = (id: string) => () => {
+    onDeleteUser(id);
+  };
+
   return (
     <div className="w-2/5 px-10">
-      <div className="flex justify-between items-center border rounded-lg bg-slate-50 rounded-b-none border-slate-200 py-2 px-5">
-        <h2 className="font-bold select-none">Profile name</h2>
+      {addIsActive ? (
+        <div className="flex items-center relative">
+          <Input
+            onChange={onChangeHandler}
+            value={valueNewUser}
+            className="w-full"
+            inputClassName="pr-20 rounded-b-none"
+          />
 
-        <button>
-          <IconUserPlus className="w-8 h-8 fill-[#00F]" />
-        </button>
-      </div>
+          <div className="flex items-center absolute right-3">
+            <button onClick={onClickHandlerAdd}>
+              <IconCheckMark className="w-6 h-6 mr-2" />
+            </button>
+
+            <button onClick={onClickHandlerCancel}>
+              <IconClose className="w-5 h-5 fill-[#00F]" />
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div className="flex items-center justify-between border rounded-lg bg-slate-50 rounded-b-none border-slate-200 py-2 px-5">
+          <h2 className="font-bold select-none">Profile name</h2>
+
+          <button onClick={onClickHandlerEdit}>
+            <IconUserPlus className="w-8 h-8 fill-[#00F]" />
+          </button>
+        </div>
+      )}
 
       <ul className="divide-y-2 divide-dashed bg-slate-50">
         {users.map((user) => (
-          <li
+          <User
             key={user.id}
-            onClick={onClickHandler(user.id)}
-            className={`flex justify-between py-2 px-5 cursor-pointer group ${
-              activeId === user.id ? "bg-blue-100" : ""
-            }`}
-          >
-            <p>{user.name}</p>
-
-            <div className="flex items-center">
-              <button className="scale-0 opactiy-0 transition group-hover:scale-100 group-hover:opacity-100">
-                <IconEdit className="fill-[#00F] w-4 h-4 mr-4 hover:scale-125 transition" />
-              </button>
-
-              <button className="scale-0 opactiy-0 transition group-hover:scale-100 group-hover:opacity-100">
-                <IconTrashCan className="fill-[#AAA] hover:scale-125 w-4 h-4 transition" />
-              </button>
-            </div>
-          </li>
+            id={user.id}
+            activeId={activeId}
+            name={user.name}
+            isOnlyItem={users.length > 1}
+            onClickHandler={onClickHandler(user.id)}
+            onClickHandlerDelete={onClickHandlerDelete(user.id)}
+          />
         ))}
       </ul>
     </div>

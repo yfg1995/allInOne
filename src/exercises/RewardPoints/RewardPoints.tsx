@@ -36,12 +36,29 @@ export const RewardPoints = () => {
     setActiveId(id);
   };
 
+  const onAddNewUser = (name: string) => {
+    setUserNames((prev) => {
+      const newUserId = generateRandomUniqueId();
+      const newUser = { id: newUserId, name, rewards: [] };
+      onActiveChange(newUserId);
+      return [newUser, ...prev];
+    });
+  };
+
+  const onDeleteUser = (id: string) => {
+    setUserNames((prev) => {
+      return prev.filter((user) => user.id !== id);
+    });
+  };
+
   return (
     <div className="flex justify-between">
       <Users
         users={userNames}
         activeId={activeId}
         onActiveChange={onActiveChange}
+        onAddNewUser={onAddNewUser}
+        onDeleteUser={onDeleteUser}
       />
       <UserInputs users={userNames} activeId={activeId} />
     </div>
