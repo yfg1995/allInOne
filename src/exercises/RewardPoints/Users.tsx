@@ -1,9 +1,7 @@
 import { FC, useState } from "react";
-import { IconUserPlus } from "../../icons/IconUserPlus";
-import { Input } from "../../components/Input";
-import { IconCheckMark } from "../../icons/IconCheckMark";
-import { IconClose } from "../../icons/IconClose";
 import { User } from "./User";
+import { HeaderInput } from "./HeaderInput";
+import { HeaderDiv } from "./HeaderDiv";
 
 export type TUser = {
   id: string;
@@ -16,6 +14,7 @@ interface IUsers {
   onDeleteUser: (id: string) => void;
   onActiveChange: (id: string) => void;
   onAddNewUser: (name: string) => void;
+  onEditUser: (id: string) => void;
 }
 
 export const Users: FC<IUsers> = ({
@@ -24,22 +23,23 @@ export const Users: FC<IUsers> = ({
   onDeleteUser,
   onActiveChange,
   onAddNewUser,
+  onEditUser,
 }) => {
   const [addIsActive, setAddIsActive] = useState(false);
   const [valueNewUser, setValueNewUser] = useState("");
 
-  const onClickHandlerAdd = () => {
+  const onClickHandlerAdd = () => () => {
     setAddIsActive(false);
     onAddNewUser(valueNewUser);
     setValueNewUser("");
   };
 
-  const onClickHandlerCancel = () => {
+  const onClickHandlerCancel = () => () => {
     setAddIsActive(false);
     setValueNewUser("");
   };
 
-  const onClickHandlerEdit = () => {
+  const onEditClickHandler = () => () => {
     setAddIsActive(true);
   };
 
@@ -55,40 +55,21 @@ export const Users: FC<IUsers> = ({
     onDeleteUser(id);
   };
 
+  const onClickHandlerEdit = (id: string) => () => {
+    onEditUser(id);
+  };
+
   return (
     <div className="w-2/5 px-10">
       {addIsActive ? (
-        <div className="flex items-center relative my-[3px]">
-          <Input
-            onChange={onChangeHandler}
-            value={valueNewUser}
-            className="w-full"
-            inputClassName="pr-[70px] rounded-b-none border-slate-200 py-6"
-          />
-
-          <div className="flex items-center absolute right-3">
-            {valueNewUser && (
-              <IconCheckMark
-                onClick={onClickHandlerAdd}
-                svgClassName="w-6 h-6 mr-2"
-              />
-            )}
-
-            <IconClose
-              onClick={onClickHandlerCancel}
-              svgClassName="w-5 h-5 fill-[#00F]"
-            />
-          </div>
-        </div>
+        <HeaderInput
+          valueNewUser={valueNewUser}
+          onChangeHandler={onChangeHandler}
+          onClickHandlerAdd={onClickHandlerAdd}
+          onClickHandlerCancel={onClickHandlerCancel}
+        />
       ) : (
-        <div className="flex items-center justify-between border rounded-lg bg-slate-50 rounded-b-none border-slate-200 py-2 px-5">
-          <h2 className="font-bold select-none">Profile name</h2>
-
-          <IconUserPlus
-            onClick={onClickHandlerEdit}
-            svgClassName="w-8 h-8 fill-[#00F] hover:scale-125"
-          />
-        </div>
+        <HeaderDiv onEditClickHandler={onEditClickHandler} />
       )}
 
       <ul className="divide-y-2 divide-dashed bg-slate-50">
@@ -101,6 +82,7 @@ export const Users: FC<IUsers> = ({
             isOnlyItem={users.length > 1}
             onClickHandler={onClickHandler(user.id)}
             onClickHandlerDelete={onClickHandlerDelete(user.id)}
+            onClickHandlerEdit={onClickHandlerEdit(user.id)}
           />
         ))}
       </ul>
