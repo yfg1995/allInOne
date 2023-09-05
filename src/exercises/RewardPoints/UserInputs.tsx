@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Label } from "../../components/Label";
 import { Input } from "../../components/Input";
-import { TUser } from "./Users";
+import { TUser } from "./Users/Users";
 import { inputs } from "../../dummyData";
 
 interface IUserInputs {
@@ -19,7 +19,7 @@ export const UserInputs: FC<IUserInputs> = ({ users, activeId }) => {
         const foundReward = rewards.find((reward) => reward.title === title);
         return (
           <Label key={`${activeId}-${id}`} title={title}>
-            <Input value={foundReward?.value || ""} />
+            <Input value={foundReward?.value || ""} className="h-11" />
           </Label>
         );
       })}

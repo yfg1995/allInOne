@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { UserInputs } from "./UserInputs";
-import { Users } from "./Users";
+import { Users } from "./Users/Users";
 import { generateRandomUniqueId } from "../../helpers/helpers";
 
 export const RewardPoints = () => {
@@ -46,10 +46,7 @@ export const RewardPoints = () => {
   };
 
   const onDeleteUser = (id: string) => {
-    setUserNames((prev) => {
-      setActiveId(userNames[0].id);
-      return prev.filter((user) => user.id !== id);
-    });
+    setUserNames((prev) => prev.filter((user) => user.id !== id));
   };
 
   const onEditUser = (id: string) => {};

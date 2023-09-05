@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import { User } from "./User";
-import { HeaderInput } from "./HeaderInput";
-import { HeaderDiv } from "./HeaderDiv";
+import { HeaderDiv } from "../HeaderDiv";
+import { EditInput } from "../../../components/EditInput";
 
 export type TUser = {
   id: string;
@@ -62,14 +62,18 @@ export const Users: FC<IUsers> = ({
   return (
     <div className="w-2/5 px-10">
       {addIsActive ? (
-        <HeaderInput
+        <EditInput
+          className="h-8 -mt-[3px]"
           valueNewUser={valueNewUser}
           onChangeHandler={onChangeHandler}
           onClickHandlerAdd={onClickHandlerAdd}
           onClickHandlerCancel={onClickHandlerCancel}
         />
       ) : (
-        <HeaderDiv onEditClickHandler={onEditClickHandler} />
+        <HeaderDiv
+          onEditClickHandler={onEditClickHandler}
+          className="-mt-[3px]"
+        />
       )}
 
       <ul className="divide-y-2 divide-dashed bg-slate-50">

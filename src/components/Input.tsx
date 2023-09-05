@@ -31,12 +31,11 @@ export const Input: FC<IInput> = ({
     <div
       className={classNames(
         // "flex items-center gap-4 h-11 [&>*]:border [&>*]:rounded-lg [&>*]:h-full [&>*]:px-4",
-        "flex items-center gap-4 h-11",
+        "flex items-center gap-4",
         className
       )}
     >
       <input
-        autoFocus
         type="text"
         className={classNames(
           "focus:outline-none w-full border-slate-400 px-4 h-full border rounded-lg",
