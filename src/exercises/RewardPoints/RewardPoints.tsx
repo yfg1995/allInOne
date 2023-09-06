@@ -46,11 +46,14 @@ export const RewardPoints = () => {
   };
 
   const onDeleteUser = (id: string) => {
-    setUserNames((prev) => prev.filter((user) => user.id !== id));
+    setUserNames((prev) => {
+      const newItems = prev.filter((user) => user.id !== id);
+      return newItems;
+    });
   };
 
   const onEditUser = (id: string) => {};
-
+  console.log(activeId);
   return (
     <div className="flex justify-between">
       <Users

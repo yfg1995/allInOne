@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 import { UserEdit } from "./UserEdit";
-import { EditInput } from "../../../components/EditInput";
+import { InputEdit } from "../../../components/InputEdit";
+import { userActions } from "./Users";
 
 interface IUser {
   id: string;
@@ -10,6 +11,15 @@ interface IUser {
   onClickHandler: (id: string) => void;
   onClickHandlerDelete: (id: string) => void;
   onClickHandlerEdit: (id: string) => void;
+  onUserAction?: ({
+    action,
+    value,
+    id,
+  }: {
+    action: keyof typeof userActions;
+    value?: string | boolean;
+    id?: string;
+  }) => void;
 }
 
 export const User: FC<IUser> = ({
@@ -20,6 +30,7 @@ export const User: FC<IUser> = ({
   onClickHandler,
   onClickHandlerDelete,
   onClickHandlerEdit,
+  onUserAction,
 }) => {
   const [editIsActive, setEditIsActive] = useState(false);
 
@@ -44,8 +55,10 @@ export const User: FC<IUser> = ({
       } ${editIsActive ? "cursor-default" : "flex py-2 px-5 cursor-pointer"}`}
     >
       {editIsActive ? (
-        <EditInput
+        <InputEdit
+          onUserAction={onUserAction}
           valueNewUser={name}
+          id={id}
           className="border-none rounded-none bg-blue-100 py-2.5 pl-5 pr-20"
         />
       ) : (
