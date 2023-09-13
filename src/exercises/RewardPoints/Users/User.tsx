@@ -10,7 +10,6 @@ interface IUser {
   isOnlyItem: boolean;
   onClickHandler: (id: string) => void;
   onClickHandlerDelete: (id: string) => void;
-  onClickHandlerEdit: (id: string) => void;
   onUserAction?: ({
     action,
     value,
@@ -20,6 +19,7 @@ interface IUser {
     value?: string | boolean;
     id?: string;
   }) => void;
+  onEditUser?: (id: string, value: string) => void;
 }
 
 export const User: FC<IUser> = ({
@@ -29,8 +29,8 @@ export const User: FC<IUser> = ({
   isOnlyItem,
   onClickHandler,
   onClickHandlerDelete,
-  onClickHandlerEdit,
   onUserAction,
+  onEditUser,
 }) => {
   const [editIsActive, setEditIsActive] = useState(false);
 
@@ -42,8 +42,7 @@ export const User: FC<IUser> = ({
     onClickHandlerDelete(id);
   };
 
-  const onEditUser = () => {
-    onClickHandlerEdit(id);
+  const onEditUserActive = () => {
     setEditIsActive(true);
   };
 
@@ -59,13 +58,16 @@ export const User: FC<IUser> = ({
           onUserAction={onUserAction}
           valueNewUser={name}
           id={id}
+          onChangeHandler={(value) => {
+            onEditUser?.(id, value);
+          }}
           className="border-none rounded-none bg-blue-100 py-2.5 pl-5 pr-20"
         />
       ) : (
         <UserEdit
           name={name}
           isOnlyItem={isOnlyItem}
-          onEditUser={onEditUser}
+          onEditUserActive={onEditUserActive}
           onDeleteUser={onDeleteUser}
         />
       )}

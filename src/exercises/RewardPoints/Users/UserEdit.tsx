@@ -5,14 +5,14 @@ import { IconTrashCan } from "../../../icons/IconTrashCan";
 interface IUserEdit {
   name: string;
   isOnlyItem: boolean;
-  onEditUser: () => void;
+  onEditUserActive: () => void;
   onDeleteUser: () => void;
 }
 
 export const UserEdit: FC<IUserEdit> = ({
   name,
   isOnlyItem,
-  onEditUser,
+  onEditUserActive,
   onDeleteUser,
 }) => {
   return (
@@ -21,7 +21,7 @@ export const UserEdit: FC<IUserEdit> = ({
 
       <div className="flex items-center">
         <IconEdit
-          onClick={onEditUser}
+          onClick={onEditUserActive}
           className="scale-0 opacity-0 transition group-hover:scale-100 group-hover:opacity-100"
           svgClassName="fill-[#00F] w-4 h-4 mr-4 hover:scale-125"
         />

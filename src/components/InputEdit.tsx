@@ -21,7 +21,6 @@ interface IInputEdit {
     id?: string;
   }) => void;
   onChangeHandler?: (value: string) => void;
-  onClickHandlerCancel?: (bool: boolean) => () => void;
 }
 
 export const InputEdit: FC<IInputEdit> = ({
@@ -29,9 +28,7 @@ export const InputEdit: FC<IInputEdit> = ({
   valueNewUser,
   id,
   isHeader = false,
-
   onChangeHandler,
-  onClickHandlerCancel,
   onUserAction,
 }) => {
   const [value, setValue] = useState(valueNewUser);
@@ -39,7 +36,6 @@ export const InputEdit: FC<IInputEdit> = ({
     setValue(val);
     onChangeHandler?.(val);
   };
-  // const onEditClick = () => {};
 
   return (
     <div className="flex items-center relative">
@@ -59,7 +55,7 @@ export const InputEdit: FC<IInputEdit> = ({
             if (isHeader) {
               onUserAction?.({ action: userActions.onAdd, value: true });
             } else {
-              onUserAction?.({ action: userActions.onEdit, value, id });
+              onUserAction?.({ action: userActions.onEdit, value: value, id });
             }
           }}
           svgClassName="w-6 h-6 mr-2"
@@ -69,7 +65,12 @@ export const InputEdit: FC<IInputEdit> = ({
         />
 
         <IconClose
-          onClick={onClickHandlerCancel?.(true)}
+          onClick={() =>
+            onUserAction?.({
+              action: userActions.onCancel,
+              value: true,
+            })
+          }
           svgClassName="w-5 h-5 fill-[#00F]"
         />
       </div>

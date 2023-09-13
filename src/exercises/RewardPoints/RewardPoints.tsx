@@ -52,8 +52,13 @@ export const RewardPoints = () => {
     });
   };
 
-  const onEditUser = (id: string) => {};
-  console.log(activeId);
+  const onEditUser = (id: string, value: string) => {
+    const updatedUser = userNames.map((user) =>
+      user.id === id ? { ...user, name: value as string } : user
+    );
+    setUserNames(updatedUser);
+  };
+
   return (
     <div className="flex justify-between">
       <Users
@@ -62,7 +67,7 @@ export const RewardPoints = () => {
         onActiveChange={onActiveChange}
         onAddNewUser={onAddNewUser}
         onDeleteUser={onDeleteUser}
-        onEditUser={onEditUser}
+        onEditUser={() => onEditUser}
       />
       <UserInputs users={userNames} activeId={activeId} />
     </div>
