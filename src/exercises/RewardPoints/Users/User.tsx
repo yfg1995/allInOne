@@ -34,6 +34,15 @@ export const User: FC<IUser> = ({
 }) => {
   const [editIsActive, setEditIsActive] = useState(false);
 
+  const onEditCancel = () => {
+    onUserAction?.({ action: userActions.onCancel, value: name, id });
+    onSetEditOff();
+  };
+
+  const onSetEditOff = () => {
+    setEditIsActive(false);
+  };
+
   const onSetActive = () => {
     onClickHandler(id);
   };
@@ -55,12 +64,14 @@ export const User: FC<IUser> = ({
     >
       {editIsActive ? (
         <InputEdit
+          onEditCancel={onEditCancel}
           onUserAction={onUserAction}
           valueNewUser={name}
           id={id}
           onChangeHandler={(value) => {
             onEditUser?.(id, value);
           }}
+          onSetEditOff={onSetEditOff}
           className="border-none rounded-none bg-blue-100 py-2.5 pl-5 pr-20"
         />
       ) : (

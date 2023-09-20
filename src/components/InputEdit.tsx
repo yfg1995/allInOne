@@ -21,6 +21,8 @@ interface IInputEdit {
     id?: string;
   }) => void;
   onChangeHandler?: (value: string) => void;
+  onEditCancel: () => void;
+  onSetEditOff?: () => void;
 }
 
 export const InputEdit: FC<IInputEdit> = ({
@@ -30,6 +32,8 @@ export const InputEdit: FC<IInputEdit> = ({
   isHeader = false,
   onChangeHandler,
   onUserAction,
+  onEditCancel,
+  onSetEditOff,
 }) => {
   const [value, setValue] = useState(valueNewUser);
   const onInputChange = (val: string) => {
@@ -56,6 +60,7 @@ export const InputEdit: FC<IInputEdit> = ({
               onUserAction?.({ action: userActions.onAdd, value: true });
             } else {
               onUserAction?.({ action: userActions.onEdit, value: value, id });
+              onSetEditOff?.();
             }
           }}
           svgClassName="w-6 h-6 mr-2"
@@ -64,15 +69,7 @@ export const InputEdit: FC<IInputEdit> = ({
           )}
         />
 
-        <IconClose
-          onClick={() =>
-            onUserAction?.({
-              action: userActions.onCancel,
-              value: true,
-            })
-          }
-          svgClassName="w-5 h-5 fill-[#00F]"
-        />
+        <IconClose onClick={onEditCancel} svgClassName="w-5 h-5 fill-[#00F]" />
       </div>
     </div>
   );

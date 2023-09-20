@@ -1,7 +1,6 @@
 import { FC, useState } from "react";
 import { User } from "./User";
-import { InputEdit } from "../../../components/InputEdit";
-import { IconUserPlus } from "../../../icons/IconUserPlus";
+import { UserAddHeader } from "./UserAddHeader";
 
 export type TUser = {
   id: string;
@@ -15,6 +14,7 @@ export const userActions = {
   onDelete: "onDelete",
   onActiveToggle: "onActiveToggle",
   onCancel: "onCancel",
+  onCancelNew: "onCancelNew",
 } as const;
 
 interface IUsers {
@@ -50,20 +50,29 @@ export const Users: FC<IUsers> = ({
       onAddNewUser(valueNewUser);
       setValueNewUser("");
     }
+
     if (action === userActions.onEdit) {
       onEditUser(id as string, value as string);
     }
+
     if (action === userActions.onDelete && !!value) {
       onDeleteUser(value as string);
     }
+
     if (action === userActions.onActiveToggle && !!value) {
       onActiveChange(value as string);
       setAddIsActive(true);
     }
+
     if (action === userActions.onCancel) {
-      setValueNewUser("");
+      onEditUser(id as string, value as string);
+    }
+
+    if (action === userActions.onCancelNew) {
+      onEditUser(id as string, (value = valueNewUser));
     }
   };
+
   const onClickHandler = (id: string) => () => {
     onActiveChange(id);
   };
@@ -78,29 +87,15 @@ export const Users: FC<IUsers> = ({
 
   return (
     <div className="w-2/5 px-10">
-      {addIsActive ? (
-        <InputEdit
-          isHeader={true}
-          onUserAction={onUserAction}
-          className="h-8 -mt-[3px]"
-          valueNewUser={valueNewUser}
-          onChangeHandler={onChangeHandler}
-        />
-      ) : (
-        <div className="flex items-center -mt-[3px] justify-between border rounded-lg bg-slate-50 rounded-b-none border-slate-200 py-2 px-5">
-          <h2 className="font-bold select-none">Profile name</h2>
-
-          <IconUserPlus
-            onClick={() =>
-              onUserAction?.({
-                action: userActions.onActiveToggle,
-                value: true,
-              })
-            }
-            svgClassName="w-8 h-8 fill-[#00F] hover:scale-110"
-          />
-        </div>
-      )}
+      <UserAddHeader
+        onActiveToggleOff={() => {
+          setAddIsActive(false);
+        }}
+        onUserAction={onUserAction}
+        isActive={addIsActive}
+        valueNewUser={valueNewUser}
+        onChangeHandler={onChangeHandler}
+      />
 
       <ul className="divide-y-2 divide-dashed bg-slate-50">
         {users.map((user) => (
@@ -113,7 +108,7 @@ export const Users: FC<IUsers> = ({
             isOnlyItem={users.length > 1}
             onClickHandler={onClickHandler(user.id)}
             onClickHandlerDelete={onClickHandlerDelete(user.id)}
-            onEditUser={(id, value) => console.log(id, value)}
+            onEditUser={onEditUser}
           />
         ))}
       </ul>
