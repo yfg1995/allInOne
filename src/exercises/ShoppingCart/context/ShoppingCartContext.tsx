@@ -1,4 +1,5 @@
 import { useContext, createContext, ReactNode, useState, FC } from "react";
+import { Cart } from "../data/Cart";
 
 interface IShoppingCartProvider {
   children: ReactNode;
@@ -96,7 +97,7 @@ export const ShoppingCartProvider: FC<IShoppingCartProvider> = ({
       }}
     >
       {children}
-      {/* <ShopCart /> */}
+      {/* <Cart /> */}
     </ShoppingCartContext.Provider>
   );
 };
