@@ -17,6 +17,7 @@ export const StoreItem: FC<IStoreItem> = ({ id, name, price, imgUrl }) => {
     decreaseCartQuantity,
     removeFromCart,
   } = useShoppingCart();
+
   const quantity = getItemQuantity(id);
 
   return (
@@ -35,12 +36,17 @@ export const StoreItem: FC<IStoreItem> = ({ id, name, price, imgUrl }) => {
         {quantity === 0 ? (
           <Button
             title="+ Add To Cart"
-            className="bg-emerald-500 rounded-lg w-full"
+            className="bg-emerald-500 rounded-lg w-full text-xl"
             onClick={() => increaseCartQuantity(id)}
           />
         ) : (
-          <div className="flex items-center flex-col">
-            <div className="flex items-center justify-center gap-x-4 mb-4">
+          <div className="flex items-center justify-between">
+            <Button
+              title="Remove"
+              className="bg-red-400 rounded-lg"
+              onClick={() => removeFromCart(id)}
+            />
+            <div className="flex items-center justify-center gap-x-4">
               <Button
                 title="-"
                 className="bg-emerald-500 rounded-lg text-xl"
@@ -55,11 +61,6 @@ export const StoreItem: FC<IStoreItem> = ({ id, name, price, imgUrl }) => {
                 onClick={() => increaseCartQuantity(id)}
               />
             </div>
-            <Button
-              title="Remove"
-              className="bg-red-400 rounded-lg"
-              onClick={() => removeFromCart(id)}
-            />
           </div>
         )}
       </div>
