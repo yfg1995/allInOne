@@ -13,7 +13,7 @@ export const IconTrashCan: FC<IIconTrashCan> = ({
   onClick,
 }) => {
   return (
-    <button onClick={onClick} className={classNames(className)}>
+    <button onClick={onClick} className={classNames("transition", className)}>
       <svg
         className={classNames("transition", svgClassName)}
         viewBox="0 0 512 512"
