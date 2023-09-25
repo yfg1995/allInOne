@@ -29,7 +29,7 @@ export const StoreItem: FC<IStoreItem> = ({ id, name, price, imgUrl }) => {
 
       <div className="flex justify-between items-center px-2 py-4 [&>*]:text-2xl [&>*]:font-semibold">
         <span>{name}</span>
-        <span className="text-slate-400">{formatCurrency(price)}</span>
+        <span className="text-slate-500">{formatCurrency(price)}</span>
       </div>
 
       <div className="mt-4 px-2">

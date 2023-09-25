@@ -1,13 +1,11 @@
 import { FC } from "react";
+import storeItems from "../data/items.json";
 import { IconClose } from "../../../icons/IconClose";
+import { formatCurrency } from "../utilities/formatCurrency";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { CartItem } from "./CartItem";
-import { formatCurrency } from "../utilities/formatCurrency";
-import storeItems from "../data/items.json";
 
-interface ICart {}
-
-export const Cart: FC<ICart> = () => {
+export const Cart: FC = () => {
   const { isOpen, isOpenCart, cartItems } = useShoppingCart();
 
   return (

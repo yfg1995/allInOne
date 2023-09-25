@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { useShoppingCart } from "../context/ShoppingCartContext";
 import storeItems from "../data/items.json";
+import { useShoppingCart } from "../context/ShoppingCartContext";
 import { formatCurrency } from "../utilities/formatCurrency";
 import { IconTrashCan } from "../../../icons/IconTrashCan";
 

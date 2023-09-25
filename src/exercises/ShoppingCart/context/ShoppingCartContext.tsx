@@ -1,5 +1,6 @@
 import { useContext, createContext, ReactNode, useState, FC } from "react";
 import { Cart } from "../data/Cart";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 interface IShoppingCartProvider {
   children: ReactNode;
@@ -31,7 +32,10 @@ export const ShoppingCartProvider: FC<IShoppingCartProvider> = ({
   children,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [cartItems, setCartItems] = useState<ICartItem[]>([]);
+  const [cartItems, setCartItems] = useLocalStorage<ICartItem[]>(
+    "shopping-cart",
+    []
+  );
 
   const isOpenCart = () => {
     setIsOpen((prev) => !prev);
