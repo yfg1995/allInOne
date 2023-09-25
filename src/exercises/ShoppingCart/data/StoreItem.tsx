@@ -49,9 +49,7 @@ export const StoreItem: FC<IStoreItem> = ({ id, name, price, imgUrl }) => {
             <div className="flex items-center justify-center gap-x-4">
               <Button
                 title="-"
-                className={`${
-                  quantity === 1 ? "cursor-default" : ""
-                } bg-emerald-500 rounded-lg text-xl`}
+                className="bg-emerald-500 rounded-lg text-xl"
                 onClick={() => decreaseCartQuantity(id)}
               />
               <div>

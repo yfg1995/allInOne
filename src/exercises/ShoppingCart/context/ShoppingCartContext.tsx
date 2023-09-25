@@ -11,8 +11,8 @@ interface ICartItem {
 }
 
 interface IShoppingCartContext {
-  openCart: () => void;
-  closeCart: () => void;
+  isOpenCart: () => void;
+  isOpen: boolean;
   getItemQuantity: (id: number) => number;
   increaseCartQuantity: (id: number) => void;
   decreaseCartQuantity: (id: number) => void;
@@ -33,13 +33,14 @@ export const ShoppingCartProvider: FC<IShoppingCartProvider> = ({
   const [isOpen, setIsOpen] = useState(false);
   const [cartItems, setCartItems] = useState<ICartItem[]>([]);
 
+  const isOpenCart = () => {
+    setIsOpen((prev) => !prev);
+  };
+
   const cartQuantity = cartItems.reduce(
     (quantity, item) => item.quantity + quantity,
     0
   );
-
-  const openCart = () => setIsOpen(true);
-  const closeCart = () => setIsOpen(false);
 
   function getItemQuantity(id: number) {
     return cartItems.find((item) => item.id === id)?.quantity || 0;
@@ -86,18 +87,18 @@ export const ShoppingCartProvider: FC<IShoppingCartProvider> = ({
   return (
     <ShoppingCartContext.Provider
       value={{
+        isOpen,
+        isOpenCart,
         getItemQuantity,
         increaseCartQuantity,
         decreaseCartQuantity,
         removeFromCart,
-        openCart,
-        closeCart,
         cartItems,
         cartQuantity,
       }}
     >
       {children}
-      {/* <Cart /> */}
+      <Cart />
     </ShoppingCartContext.Provider>
   );
 };
