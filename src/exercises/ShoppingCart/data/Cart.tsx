@@ -12,7 +12,7 @@ export const Cart: FC<ICart> = () => {
       <div
         onClick={isOpenCart}
         className={`fixed top-0 left-0 h-screen w-full bg-black z-40 transition opacity-70 duration-50 ${
-          isOpen ? "block translate-x-0" : "hidden translate-x-full"
+          isOpen ? "block" : "hidden"
         }`}
       ></div>
       <div
