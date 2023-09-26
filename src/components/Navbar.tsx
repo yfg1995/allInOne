@@ -6,7 +6,7 @@ export const Navbar: FC = () => {
   const { isOpenCart, cartQuantity } = useShoppingCart();
 
   return (
-    <div className="flex justify-between items-center mb-4 h-24 sticky top-0 z-10 bg-white border-emerald-500 border-b-2 z-100 px-4">
+    <div className="flex justify-between items-center mb-8 h-24 sticky top-0 z-10 bg-white border-emerald-500 border-b-2 z-100 px-4">
       <ul className="flex [&>*]:mr-6 text-xl font-medium">
         <li>
           <NavLink to="/">Home</NavLink>

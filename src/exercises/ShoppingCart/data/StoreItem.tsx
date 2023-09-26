@@ -27,53 +27,55 @@ export const StoreItem: FC<IStoreItem> = ({ id, name, price, imgUrl }) => {
   };
 
   return (
-    <div className="w-96">
+    <div className="w-96 shadow-2xl">
       <div
-        className="h-52 bg-center bg-cover cursor-pointer"
+        className="h-52 bg-center bg-cover cursor-pointer rounded-t-lg"
         style={{ backgroundImage: `url(${imgUrl})` }}
       ></div>
 
-      <div className="flex justify-between items-center px-2 py-4 [&>*]:text-2xl [&>*]:font-semibold">
-        <span>{name}</span>
-        <span className="text-slate-500">{formatCurrency(price)}</span>
-      </div>
+      <div className="border-2 border-t-0 border-slate-500 rounded-b-lg px-4 bg-slate-50">
+        <div className="flex justify-between items-center py-4 [&>*]:text-2xl [&>*]:font-semibold">
+          <span>{name}</span>
+          <span className="text-slate-500">{formatCurrency(price)}</span>
+        </div>
 
-      <div className="mt-4 px-2">
-        {quantity === 0 ? (
-          <Button
-            title="+ Add To Cart"
-            className="bg-emerald-500 rounded-lg w-full text-xl hover:bg-emerald-400 hover:text-white"
-            onClick={() => increaseCartQuantity(id)}
-          />
-        ) : (
-          <div className="flex items-center justify-between">
+        <div className="my-4">
+          {quantity === 0 ? (
             <Button
-              title="Remove"
-              className="bg-red-400 rounded-lg"
-              onClick={() => removeFromCart(id)}
+              title="+ Add To Cart"
+              className="bg-emerald-500 rounded-lg w-full text-xl hover:bg-emerald-400 hover:text-white"
+              onClick={() => increaseCartQuantity(id)}
             />
-
-            <div className="flex items-center justify-center gap-x-4">
+          ) : (
+            <div className="flex items-center justify-between">
               <Button
-                title="-"
-                className={`${
-                  quantity === 1 ? "pointer-events-none" : ""
-                } bg-emerald-500 rounded-lg text-xl hover:bg-emerald-400 hover:text-white`}
-                onClick={buttonNotAllowed}
+                title="Remove"
+                className="bg-red-500 rounded-lg hover:bg-red-400 hover:text-white"
+                onClick={() => removeFromCart(id)}
               />
 
-              <div>
-                <span className="text-2xl">{quantity}</span> in cart
+              <div className="flex items-center justify-between gap-x-4">
+                <Button
+                  title="-"
+                  className={`${
+                    quantity === 1 ? "pointer-events-none" : ""
+                  } bg-emerald-500 rounded-lg text-xl hover:bg-emerald-400 hover:text-white`}
+                  onClick={buttonNotAllowed}
+                />
+
+                <div className="relative mx-4">
+                  <span className="text-2xl">{quantity}</span> in cart
+                </div>
+
+                <Button
+                  title="+"
+                  className="bg-emerald-500 rounded-lg text-xl hover:bg-emerald-400 hover:text-white"
+                  onClick={() => increaseCartQuantity(id)}
+                />
               </div>
-
-              <Button
-                title="+"
-                className="bg-emerald-500 rounded-lg text-xl hover:bg-emerald-400 hover:text-white"
-                onClick={() => increaseCartQuantity(id)}
-              />
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );

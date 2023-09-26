@@ -18,7 +18,11 @@ export const CartItem: FC<ICartItem> = ({ id, quantity }) => {
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center">
-        <img src={item.imgUrl} className="w-32 h-20 object-cover" alt="" />
+        <img
+          src={item.imgUrl}
+          className="w-32 h-20 object-cover select-none"
+          alt=""
+        />
 
         <div className="ml-4">
           <div className="text-xl">
