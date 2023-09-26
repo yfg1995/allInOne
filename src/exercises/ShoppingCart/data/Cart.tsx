@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import storeItems from "../data/items.json";
 import { IconClose } from "../../../icons/IconClose";
 import { formatCurrency } from "../utilities/formatCurrency";
@@ -7,24 +7,19 @@ import { CartItem } from "./CartItem";
 
 export const Cart: FC = () => {
   const { isOpen, isOpenCart, cartItems } = useShoppingCart();
-
-  useEffect(() => {
-    if (cartItems.length === 0) {
-      isOpenCart();
-    }
-  }, [cartItems]);
+  const isCartOpen = isOpen && cartItems.length > 0;
 
   return (
     <>
       <div
         onClick={isOpenCart}
         className={`fixed top-0 left-0 h-screen w-full bg-black z-40 transition opacity-70 duration-0 ${
-          isOpen ? "block" : "hidden"
+          isCartOpen ? "block" : "hidden"
         }`}
       ></div>
       <div
         className={`fixed right-0 top-0 z-50 h-screen bg-white w-2/6 px-6 py-4 transition duration-300 ${
-          isOpen ? "translate-x-0" : "translate-x-full"
+          isCartOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="flex justify-between items-center">
