@@ -10,6 +10,7 @@ export const Cart: FC = () => {
 
   return (
     <>
+      {/* {emptyCart} */}
       <div
         onClick={isOpenCart}
         className={`fixed top-0 left-0 h-screen w-full bg-black z-40 transition opacity-70 duration-0 ${

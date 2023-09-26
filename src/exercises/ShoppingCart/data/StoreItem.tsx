@@ -39,7 +39,7 @@ export const StoreItem: FC<IStoreItem> = ({ id, name, price, imgUrl }) => {
           <span className="text-slate-500">{formatCurrency(price)}</span>
         </div>
 
-        <div className="my-4">
+        <div className="my-8">
           {quantity === 0 ? (
             <Button
               title="Add to Cart"
