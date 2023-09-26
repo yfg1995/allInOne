@@ -27,7 +27,7 @@ export const StoreItem: FC<IStoreItem> = ({ id, name, price, imgUrl }) => {
   };
 
   return (
-    <div className="w-96 shadow-2xl">
+    <div className="w-96 shadow-2xl rounded-b-lg">
       <div
         className="h-52 bg-center bg-cover cursor-pointer rounded-t-lg"
         style={{ backgroundImage: `url(${imgUrl})` }}
