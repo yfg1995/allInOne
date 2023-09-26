@@ -33,13 +33,13 @@ export const StoreItem: FC<IStoreItem> = ({ id, name, price, imgUrl }) => {
         style={{ backgroundImage: `url(${imgUrl})` }}
       ></div>
 
-      <div className="border-2 border-t-0 border-slate-500 rounded-b-lg px-4 bg-slate-100">
+      <div className="border border-t-0 border-slate-300 rounded-b-lg px-4 bg-slate-50">
         <div className="flex justify-between items-center py-4 [&>*]:text-2xl [&>*]:font-semibold">
           <span>{name}</span>
           <span className="text-slate-500">{formatCurrency(price)}</span>
         </div>
 
-        <div className="my-8">
+        <div className="my-8  ">
           {quantity === 0 ? (
             <Button
               title="Add to Cart"

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import storeItems from "../data/items.json";
 import { IconClose } from "../../../icons/IconClose";
 import { formatCurrency } from "../utilities/formatCurrency";
@@ -8,9 +8,14 @@ import { CartItem } from "./CartItem";
 export const Cart: FC = () => {
   const { isOpen, isOpenCart, cartItems } = useShoppingCart();
 
+  useEffect(() => {
+    if (cartItems.length === 0) {
+      isOpenCart();
+    }
+  }, [cartItems]);
+
   return (
     <>
-      {/* {emptyCart} */}
       <div
         onClick={isOpenCart}
         className={`fixed top-0 left-0 h-screen w-full bg-black z-40 transition opacity-70 duration-0 ${
