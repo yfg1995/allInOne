@@ -20,6 +20,12 @@ export const StoreItem: FC<IStoreItem> = ({ id, name, price, imgUrl }) => {
 
   const quantity = getItemQuantity(id);
 
+  const buttonNotAllowed = () => {
+    if (quantity > 1) {
+      decreaseCartQuantity(id);
+    }
+  };
+
   return (
     <div className="w-96">
       <div
@@ -36,7 +42,7 @@ export const StoreItem: FC<IStoreItem> = ({ id, name, price, imgUrl }) => {
         {quantity === 0 ? (
           <Button
             title="+ Add To Cart"
-            className="bg-emerald-500 rounded-lg w-full text-xl"
+            className="bg-emerald-500 rounded-lg w-full text-xl hover:bg-emerald-400 hover:text-white"
             onClick={() => increaseCartQuantity(id)}
           />
         ) : (
@@ -46,18 +52,23 @@ export const StoreItem: FC<IStoreItem> = ({ id, name, price, imgUrl }) => {
               className="bg-red-400 rounded-lg"
               onClick={() => removeFromCart(id)}
             />
+
             <div className="flex items-center justify-center gap-x-4">
               <Button
                 title="-"
-                className="bg-emerald-500 rounded-lg text-xl"
-                onClick={() => decreaseCartQuantity(id)}
+                className={`${
+                  quantity === 1 ? "pointer-events-none" : ""
+                } bg-emerald-500 rounded-lg text-xl hover:bg-emerald-400 hover:text-white`}
+                onClick={buttonNotAllowed}
               />
+
               <div>
                 <span className="text-2xl">{quantity}</span> in cart
               </div>
+
               <Button
                 title="+"
-                className="bg-emerald-500 rounded-lg text-xl"
+                className="bg-emerald-500 rounded-lg text-xl hover:bg-emerald-400 hover:text-white"
                 onClick={() => increaseCartQuantity(id)}
               />
             </div>

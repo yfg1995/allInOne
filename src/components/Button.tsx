@@ -14,7 +14,7 @@ export const Button: FC<IButton> = ({
   return (
     <button
       className={classNames(
-        "px-4 py-2 text-white flex items-center justify-center font-medium cursor-pointer transition disabled:opacity-50 disabled:pointer-events-none border hover:bg-white hover:text-black",
+        "px-4 py-2 text-white flex items-center justify-center font-medium cursor-pointer transition duration-200 select-none disabled:opacity-50 disabled:pointer-events-none border hover:bg-white hover:text-black",
         className
         // props.disabled && "opacity-50"
       )}
