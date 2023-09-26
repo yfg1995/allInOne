@@ -33,7 +33,7 @@ export const StoreItem: FC<IStoreItem> = ({ id, name, price, imgUrl }) => {
         style={{ backgroundImage: `url(${imgUrl})` }}
       ></div>
 
-      <div className="border-2 border-t-0 border-slate-500 rounded-b-lg px-4 bg-slate-50">
+      <div className="border-2 border-t-0 border-slate-500 rounded-b-lg px-4 bg-slate-100">
         <div className="flex justify-between items-center py-4 [&>*]:text-2xl [&>*]:font-semibold">
           <span>{name}</span>
           <span className="text-slate-500">{formatCurrency(price)}</span>
@@ -42,7 +42,7 @@ export const StoreItem: FC<IStoreItem> = ({ id, name, price, imgUrl }) => {
         <div className="my-4">
           {quantity === 0 ? (
             <Button
-              title="+ Add To Cart"
+              title="Add to Cart"
               className="bg-emerald-500 rounded-lg w-full text-xl hover:bg-emerald-400 hover:text-white"
               onClick={() => increaseCartQuantity(id)}
             />
