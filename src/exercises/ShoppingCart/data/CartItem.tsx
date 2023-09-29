@@ -10,10 +10,17 @@ interface ICartItem {
 }
 
 export const CartItem: FC<ICartItem> = ({ id, quantity }) => {
-  const { removeFromCart } = useShoppingCart();
+  const { removeFromCart, isOpenCart, cartItems } = useShoppingCart();
   const item = storeItems.find((item) => item.id === id);
 
   if (item == null) return null;
+
+  const onItemDelete = () => {
+    if (cartItems.length === 1) {
+      isOpenCart(false);
+    }
+    removeFromCart(item.id);
+  };
 
   return (
     <div className="flex items-center justify-between">
@@ -40,7 +47,7 @@ export const CartItem: FC<ICartItem> = ({ id, quantity }) => {
         <div className="mr-4">{formatCurrency(item.price * quantity)}</div>
 
         <IconTrashCan
-          onClick={() => removeFromCart(item.id)}
+          onClick={onItemDelete}
           className="w-5 h-5 fill-slate-500 hover:scale-110"
         />
       </div>

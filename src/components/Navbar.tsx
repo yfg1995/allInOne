@@ -23,7 +23,7 @@ export const Navbar: FC = () => {
 
       {cartQuantity > 0 && (
         <button
-          onClick={isOpenCart}
+          onClick={() => isOpenCart(true)}
           className="relative border-2 rounded-full border-slate-150 p-2.5 hover:border-emerald-500 transition"
         >
           <svg viewBox="0 0 576 512" className="w-6 h-6 fill-emerald-500">

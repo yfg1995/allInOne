@@ -58,12 +58,14 @@ export const StoreItem: FC<IStoreItem> = ({ id, name, price, imgUrl }) => {
                 <Button
                   title="-"
                   className={`${
-                    quantity === 1 ? "pointer-events-none" : ""
-                  } bg-emerald-500 rounded-lg text-xl hover:bg-emerald-400 hover:text-white`}
+                    quantity === 1
+                      ? "pointer-events-none bg-emerald-300"
+                      : "bg-emerald-500"
+                  }  rounded-lg text-xl hover:bg-emerald-400 hover:text-white`}
                   onClick={buttonNotAllowed}
                 />
 
-                <div className="relative mx-4">
+                <div className="relative mx-4 select-none">
                   <span className="text-2xl">{quantity}</span> in cart
                 </div>
 

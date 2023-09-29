@@ -12,7 +12,7 @@ interface ICartItem {
 }
 
 interface IShoppingCartContext {
-  isOpenCart: () => void;
+  isOpenCart: (val: boolean) => void;
   isOpen: boolean;
   getItemQuantity: (id: number) => number;
   increaseCartQuantity: (id: number) => void;
@@ -37,8 +37,8 @@ export const ShoppingCartProvider: FC<IShoppingCartProvider> = ({
     []
   );
 
-  const isOpenCart = () => {
-    setIsOpen((prev) => !prev);
+  const isOpenCart = (val: boolean) => {
+    setIsOpen(val);
   };
 
   const cartQuantity = cartItems.reduce(

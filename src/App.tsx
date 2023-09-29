@@ -2,7 +2,8 @@
 // import { Exercise2 } from "./exercises/exercise2/Exercise2";
 // import { Exercise3 } from "./exercises/exercise3/Exercise3";
 // import { RewardPoints } from "./exercises/RewardPoints/RewardPoints";
-import { ShoppingCart } from "./exercises/ShoppingCart/ShoppingCart";
+// import { ShoppingCart } from "./exercises/ShoppingCart/ShoppingCart";
+import { JuniorReactInterviewChallenge } from "./exercises/JuniorReactInterviewChallenge/JuniorReactInterviewChallenge";
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
       {/* <Exercise2 /> */}
       {/* <Exercise3 /> */}
       {/* <RewardPoints /> */}
-      <ShoppingCart />
+      {/* <ShoppingCart /> */}
+      <JuniorReactInterviewChallenge />
     </>
   );
 }
