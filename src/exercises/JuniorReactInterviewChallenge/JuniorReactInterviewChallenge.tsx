@@ -40,7 +40,7 @@ export const JuniorReactInterviewChallenge: FC<IPoint> = () => {
     <div className="relative">
       <button
         disabled={points.length === 0}
-        className="absolute top-4 left-4 z-10 py-3 px-6 border disabled:bg-slate-600 font-semibold border-white rounded-lg text-white uppercase"
+        className="absolute top-4 left-4 z-10 py-3 px-6 border disabled:opacity-50 bg-slate-600 font-semibold border-white rounded-lg text-white uppercase"
         onClick={handleUndo}
       >
         Undo
@@ -48,7 +48,7 @@ export const JuniorReactInterviewChallenge: FC<IPoint> = () => {
 
       <button
         disabled={popped.length === 0}
-        className="absolute top-4 left-32 z-10 py-3 px-6 border disabled:bg-slate-600 font-semibold border-white rounded-lg text-white uppercase"
+        className="absolute top-4 left-32 z-10 py-3 px-6 border disabled:opacity-50 bg-slate-600 font-semibold border-white rounded-lg text-white uppercase"
         onClick={handleRedo}
       >
         Redo
