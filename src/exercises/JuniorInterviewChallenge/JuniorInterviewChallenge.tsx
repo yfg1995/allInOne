@@ -5,7 +5,7 @@ interface IPoint {
   y?: number;
 }
 
-export const JuniorReactInterviewChallenge: FC<IPoint> = () => {
+export const JuniorInterviewChallenge: FC<IPoint> = () => {
   const [points, setPoints] = useState<IPoint[]>([]);
   const [popped, setPopped] = useState<IPoint[]>([]);
 

@@ -28,7 +28,7 @@ const files = {
   ],
 };
 
-export const IntermediateReactInterviewChallenge: FC = () => {
+export const IntermediateInterviewChallenge: FC = () => {
   return (
     <div>
       {files.children.map((entry, idx) => (
