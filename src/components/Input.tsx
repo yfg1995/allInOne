@@ -18,7 +18,7 @@ export const Input: FC<IInput> = ({
   onChange,
   onSave,
 }) => {
-  const [inputValue, setInputValue] = useState<string>(value || "");
+  const [inputValue, setInputValue] = useState(value || "");
 
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
@@ -28,17 +28,12 @@ export const Input: FC<IInput> = ({
   };
 
   return (
-    <div
-      className={classNames(
-        // "flex items-center gap-4 h-11 [&>*]:border [&>*]:rounded-lg [&>*]:h-full [&>*]:px-4",
-        "flex items-center gap-4",
-        className
-      )}
-    >
+    <div className={classNames("flex items-center gap-4", className)}>
       <input
+        // id="input"
         type="text"
         className={classNames(
-          "focus:outline-none w-full border-slate-400 px-4 h-full border rounded-lg",
+          "focus:outline-none w-full border-slate-400 px-4 py-2.5 h-full border rounded-lg",
           inputClassName
         )}
         value={inputValue}

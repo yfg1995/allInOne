@@ -3,8 +3,12 @@
 // import { Exercise3 } from "./exercises/exercise3/Exercise3";
 // import { RewardPoints } from "./exercises/RewardPoints/RewardPoints";
 // import { ShoppingCart } from "./exercises/ShoppingCart/ShoppingCart";
-// import { JuniorReactInterviewChallenge } from "./exercises/JuniorReactInterviewChallenge/JuniorReactInterviewChallenge";
-import { IntermediateInterviewChallenge } from "./exercises/IntermediateInterviewChallenge/IntermediateInterviewChallenge";
+// import { JuniorInterviewChallenge } from "./exercises/JuniorInterviewChallenge/JuniorInterviewChallenge";
+// import { IntermediateInterviewChallenge } from "./exercises/IntermediateInterviewChallenge/IntermediateInterviewChallenge";
+// import { InterviewChallenge } from "./exercises/InterviewChallenge/InterviewChallenge";
+// import { BeginnerInterviewChallenge } from "./exercises/BeginnerInterviewChallenge/BeginnerInterviewChallenge";
+// import { Sudoku } from "./exercises/Sudoku/Sudoku";
+import { MemoryGame } from "./exercises/MemoryGame/MemoryGame";
 
 function App() {
   return (
@@ -14,8 +18,12 @@ function App() {
       {/* <Exercise3 /> */}
       {/* <RewardPoints /> */}
       {/* <ShoppingCart /> */}
-      {/* <JuniorReactInterviewChallenge /> */}
-      <IntermediateInterviewChallenge />
+      {/* <JuniorInterviewChallenge /> */}
+      {/* <IntermediateInterviewChallenge /> */}
+      {/* <InterviewChallenge /> */}
+      {/* <BeginnerInterviewChallenge word={""} score={0} /> */}
+      {/* <Sudoku /> */}
+      <MemoryGame row={0} col={0} />
     </>
   );
 }
