@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { InputEdit } from "../../../components/InputEdit";
 import { userActions } from "./Users";
 import { IconUserPlus } from "../../../icons/IconUserPlus";
